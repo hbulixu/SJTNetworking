@@ -21,4 +21,6 @@
 @property (nonatomic, assign, readwrite) BOOL isDataFromCache;
 
 @property (nonatomic, strong, readwrite) id responseData;
+
+
 @end

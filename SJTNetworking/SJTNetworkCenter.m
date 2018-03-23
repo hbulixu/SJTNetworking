@@ -49,4 +49,16 @@
     [request start];
     return request;
 }
+#pragma mark batchRequest
+
++(SJTBatchRequest *)sendRequestArray:(NSArray <SJTRequest *>*)requestArray
+                        success:(SJTBatchRequestSuccessBlock) success
+                        failure:(SJTBatchRequestFailureBlock) failure
+{
+    SJTBatchRequest * batchRequest = [[SJTBatchRequest alloc]initWithRequestArray:requestArray];
+    batchRequest.successBlock = success;
+    batchRequest.failureBlock = failure;
+    [batchRequest start];
+    return batchRequest;
+}
 @end

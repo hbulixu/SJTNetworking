@@ -10,7 +10,7 @@
 #define SJTNetCommomHeader_h
 @class SJTBaseRequest;
 @class SJTFormData;
-
+@class SJTBatchRequest;
 typedef NS_ENUM(NSUInteger, SJTRequestMethod) {
     SJTRequestMethodGet,
     SJTRequestMethodPost
@@ -38,4 +38,7 @@ typedef NS_ENUM(NSInteger, SJTResponseSerializerType) {
 
 typedef void(^SJTRequestSuccessBlock)( SJTBaseRequest *request);
 typedef void(^SJTRequestFailureBlock)( SJTBaseRequest *request, NSError * error);
+
+typedef void(^SJTBatchRequestSuccessBlock)( SJTBatchRequest *request);
+typedef void(^SJTBatchRequestFailureBlock)( SJTBatchRequest *request);
 #endif /* SJTNetCommomHeader_h */

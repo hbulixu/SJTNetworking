@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SJTNetCommomHeader.h"
 @class SJTBatchRequest;
 @class SJTRequest;
 @protocol SJTBatchRequestDelegate <NSObject>
@@ -21,15 +22,17 @@
 
 @interface SJTBatchRequest : NSObject
 
-@property (nonatomic, copy) void (^successBlock)(SJTBatchRequest *);
+@property (nonatomic, copy) SJTBatchRequestSuccessBlock  successBlock;
 
-@property (nonatomic, copy) void (^failureBlock)(SJTBatchRequest *);
+@property (nonatomic, copy) SJTBatchRequestFailureBlock failureBlock;
 
 @property (nonatomic, strong, readonly) NSArray<SJTRequest *> *requestArray;
 
 @property (nonatomic,weak) id <SJTBatchRequestDelegate> delegate;
 
--(instancetype)initWithRequestArray:(NSArray *)requestArray;
+@property (nonatomic,strong) SJTRequest * firstErrorRequest;
+
+-(instancetype)initWithRequestArray:(NSArray <SJTRequest *>*)requestArray;
 
 - (void)start;
 

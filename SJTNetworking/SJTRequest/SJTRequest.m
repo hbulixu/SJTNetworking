@@ -9,10 +9,16 @@
 #import "SJTRequest.h"
 #import "SJTRequestEngine.h"
 
-
-
 @implementation SJTRequest
 
++(instancetype)requestWithUrl:(NSString *)url requestMethod:(SJTRequestMethod)requestMethod requestParams:(NSDictionary *)requestParams
+{
+    SJTRequest * request = [SJTRequest new];
+    request.url = url;
+    request.requestMethod = requestMethod;
+    request.requestParams = requestParams;
+    return request;
+}
 
 -(void)start
 {

@@ -27,4 +27,5 @@
 
 @property (nonatomic, weak) id<SJTRequestDelegate> delegate;
 
++(instancetype)requestWithUrl:(NSString *)url requestMethod:(SJTRequestMethod)requestMethod requestParams:(NSDictionary *)requestParams;
 @end

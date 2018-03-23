@@ -17,7 +17,7 @@
 @implementation SJTBatchRequest
 
 
--(instancetype)initWithRequestArray:(NSArray *)requestArray
+-(instancetype)initWithRequestArray:(NSArray <SJTRequest *>*)requestArray
 {
     self = [super init];
     if (self) {
@@ -81,6 +81,7 @@
 //普通批量请求有一个失败，其它的都不请求了
 - (void)requestFailed:(SJTRequest *)request error:(NSError *)error
 {
+    self.firstErrorRequest =request;
     [self cancell];
     if ([self.delegate respondsToSelector:@selector(batchRequestFailure:)]) {
         [self.delegate batchRequestFailure:self];

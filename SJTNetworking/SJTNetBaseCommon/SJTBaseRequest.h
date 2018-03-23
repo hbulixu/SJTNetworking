@@ -25,18 +25,19 @@
 
 @property (nonatomic, strong)NSString * url;
 
-@property (nonatomic, strong)NSDictionary * requestHeaderFieldValueDictionary;
-
-@property (nonatomic, assign)NSInteger requestTimeoutInterval;
-
-@property (nonatomic, assign)SJTRequestSerializerType  requestSerializerType;
-@property (nonatomic, assign)SJTResponseSerializerType responseSerializerType;
-
 @property (nonatomic, assign)SJTRequestMethod requestMethod;
 
 @property (nonatomic, strong)NSDictionary * requestParams;
 
 @property (nonatomic, assign)SJTRequestPriority requestPriority;
+
+@property (nonatomic, strong)NSDictionary * requestHeaderFieldValueDictionary;
+
+@property (nonatomic, assign)NSInteger requestTimeoutInterval;
+
+@property (nonatomic, assign)SJTRequestSerializerType  requestSerializerType;
+
+@property (nonatomic, assign)SJTResponseSerializerType responseSerializerType;
 
 @property (nonatomic, copy)SJTRequestSuccessBlock successBlock;
 

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SJTRequest.h"
+#import "SJTBatchRequest.h"
 @interface SJTNetworkCenter : NSObject
 
 //自定义request
@@ -28,6 +29,10 @@
            failure:(SJTRequestFailureBlock) failure;
 
 
+//批量请求GET POST不明确，需要自定义request
++(SJTBatchRequest *)sendRequestArray:(NSArray <SJTRequest *>*)requestArray
+                        success:(SJTBatchRequestSuccessBlock) success
+                        failure:(SJTBatchRequestFailureBlock) failure;
 
 
 @end
