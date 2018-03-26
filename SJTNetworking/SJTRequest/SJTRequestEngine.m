@@ -47,36 +47,40 @@
 -(void)startRequest:(SJTRequest *)request
 {
 
-
-    [[SJTNetAdapter shareAdapter] dataTaskWith:request completionHandler:^(SJTRequest *request, NSError *error) {
+    __weak __typeof(self)weakSelf = self;
+    [[SJTNetAdapter shareAdapter] dataTaskWith:request completionHandler:^(SJTBaseRequest *request, NSError *error) {
         
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        SJTRequest * tempRequest = (SJTRequest *)request;
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (error) {
-                if (request.successBlock) {
-                    request.successBlock(request);
+
+                if (tempRequest.failureBlock) {
+                    tempRequest.failureBlock(tempRequest,error);
                 }
-                if ([request.delegate respondsToSelector:@selector(requestSuccess:)]) {
-                    [request.delegate requestSuccess:request];
+                if ([tempRequest.delegate respondsToSelector:@selector(requestFailed:error:)]) {
+                    [tempRequest.delegate requestFailed:tempRequest error:error];
                 }
             }else
             {
-                if (request.failureBlock) {
-                    request.failureBlock(request,error);
+                if (tempRequest.successBlock) {
+                    tempRequest.successBlock(tempRequest);
                 }
-                if ([request.delegate respondsToSelector:@selector(requestFailed:error:)]) {
-                    [request.delegate requestFailed:request error:error];
+                if ([tempRequest.delegate respondsToSelector:@selector(requestSuccess:)]) {
+                    [tempRequest.delegate requestSuccess:tempRequest];
                 }
             }
             
         });
 
-        [self removeRequestFromStorer:request];
+        [strongSelf removeRequestFromStorer:tempRequest];
+        //防止循环引用
+        [tempRequest clearCompletionBlock];
     }];
     
     [self addRequestToStorer:request];
-    //防止循环引用
-    [request clearCompletionBlock];
+
 }
 
 

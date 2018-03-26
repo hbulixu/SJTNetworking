@@ -21,6 +21,7 @@
 		37BB528420639CD0002FD64A /* SJTNetworkCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BB528320639CD0002FD64A /* SJTNetworkCenter.m */; };
 		37BB52882063D1C7002FD64A /* SJTBatchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BB52872063D1C7002FD64A /* SJTBatchRequest.m */; };
 		37BB528B2063D1EC002FD64A /* SJTBatchRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BB528A2063D1EC002FD64A /* SJTBatchRequestEngine.m */; };
+		37BB52912068A033002FD64A /* SJTUploadRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BB52902068A033002FD64A /* SJTUploadRequestEngine.m */; };
 		37C3D3E52047DD8500785567 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3D3E42047DD8500785567 /* main.m */; };
 		37C3D3E82047DD8500785567 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3D3E72047DD8500785567 /* AppDelegate.m */; };
 		37C3D3EB2047DD8500785567 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3D3EA2047DD8500785567 /* ViewController.m */; };
@@ -81,6 +82,8 @@
 		37BB52872063D1C7002FD64A /* SJTBatchRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTBatchRequest.m; sourceTree = "<group>"; };
 		37BB52892063D1EC002FD64A /* SJTBatchRequestEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTBatchRequestEngine.h; sourceTree = "<group>"; };
 		37BB528A2063D1EC002FD64A /* SJTBatchRequestEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTBatchRequestEngine.m; sourceTree = "<group>"; };
+		37BB528F2068A033002FD64A /* SJTUploadRequestEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTUploadRequestEngine.h; sourceTree = "<group>"; };
+		37BB52902068A033002FD64A /* SJTUploadRequestEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTUploadRequestEngine.m; sourceTree = "<group>"; };
 		37C3D3E02047DD8500785567 /* SJTNetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SJTNetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C3D3E42047DD8500785567 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		37C3D3E62047DD8500785567 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 			children = (
 				377EA4CC2057BFF300AA7D8B /* SJTUploadRequest.h */,
 				377EA4CD2057BFF300AA7D8B /* SJTUploadRequest.m */,
+				37BB528F2068A033002FD64A /* SJTUploadRequestEngine.h */,
+				37BB52902068A033002FD64A /* SJTUploadRequestEngine.m */,
 			);
 			path = SJTUploadRequest;
 			sourceTree = "<group>";
@@ -405,6 +410,7 @@
 				37BB528420639CD0002FD64A /* SJTNetworkCenter.m in Sources */,
 				377EA4C0204E78D300AA7D8B /* AFURLRequestSerialization.m in Sources */,
 				377EA4C2204E78D300AA7D8B /* AFURLSessionManager.m in Sources */,
+				37BB52912068A033002FD64A /* SJTUploadRequestEngine.m in Sources */,
 				377EA4D12057F35900AA7D8B /* SJTRequstPrivate.m in Sources */,
 				377EA4BE204E78D300AA7D8B /* AFNetworkReachabilityManager.m in Sources */,
 				37C3D41E2047E0B200785567 /* SJTRequest.m in Sources */,

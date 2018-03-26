@@ -27,5 +27,13 @@
 
 @property (nonatomic, weak) id<SJTRequestDelegate> delegate;
 
+@property (nonatomic, copy)SJTRequestSuccessBlock successBlock;
+
+@property (nonatomic, copy)SJTRequestFailureBlock failureBlock;
+
+
+
 +(instancetype)requestWithUrl:(NSString *)url requestMethod:(SJTRequestMethod)requestMethod requestParams:(NSDictionary *)requestParams;
+
+- (void)clearCompletionBlock;
 @end

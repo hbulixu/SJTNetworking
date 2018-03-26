@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SJTNetCommomHeader.h"
 
-@class  SJTRequest;
-
-typedef void(^SJTCompletionHandler)(SJTRequest * request, NSError * error);
+typedef void(^SJTCompletionHandler)(SJTBaseRequest * request, NSError * error);
 
 @interface SJTNetAdapter : NSObject
 
@@ -18,4 +17,5 @@ typedef void(^SJTCompletionHandler)(SJTRequest * request, NSError * error);
 
 -(NSURLSessionDataTask*)dataTaskWith:(SJTRequest *)request completionHandler:(SJTCompletionHandler )completionHandler;
 
+-(NSURLSessionUploadTask*)uploadDataTaskWith:(SJTUploadRequest *)uploadRequest processBlock:(SJTProgressBlock)proccessBlock completionHandler:(SJTCompletionHandler)completionHandler;
 @end

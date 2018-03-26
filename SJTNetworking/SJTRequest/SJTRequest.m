@@ -47,4 +47,10 @@
     });
     self.delegate = nil;
 }
+
+- (void)clearCompletionBlock
+{
+    self.successBlock = nil;
+    self.failureBlock = nil;
+}
 @end

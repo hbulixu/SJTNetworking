@@ -39,10 +39,6 @@
 
 @property (nonatomic, assign)SJTResponseSerializerType responseSerializerType;
 
-@property (nonatomic, copy)SJTRequestSuccessBlock successBlock;
-
-@property (nonatomic, copy)SJTRequestFailureBlock failureBlock;
-
 @property (nonatomic, readonly, getter=isCancelled) BOOL cancelled;
 
 @property (nonatomic, readonly, getter=isExecuting) BOOL executing;
@@ -54,7 +50,7 @@
 
 -(void)cancell;
 
-- (void)clearCompletionBlock;
+
 @end
 
 

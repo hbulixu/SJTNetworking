@@ -8,6 +8,7 @@
 
 #import "SJTNetAdapter.h"
 #import "SJTRequest.h"
+#import "SJTUploadRequest.h"
 #import "SJTRequstPrivate.h"
 #import "AFNetworking.h"
 #import "SJTNetworkingConfig.h"
@@ -66,11 +67,12 @@
     }else
     {
         [self processRequestWithConfig:request];
+        
         SJTRequestMethod method = request.requestMethod;
         NSString * url = request.url;
         NSDictionary * params = request.requestParams;
         
-        NSError *  requestSerializationError = nil;
+       __autoreleasing NSError *  requestSerializationError = nil;
         
         AFHTTPRequestSerializer * requestSerializer = [self requestSerializerForRequest:request];
         NSString * requestMethod;
@@ -94,10 +96,10 @@
         }
     }
     
-    
+    __weak __typeof(self)weakSelf = self;
     NSURLSessionDataTask * task = [_manager dataTaskWithRequest:urlRequest completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        
-        [self handleResponse:response object:responseObject error:error request:request completionHandler:completionHandler];
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        [strongSelf handleResponse:response object:responseObject error:error request:request completionHandler:completionHandler];
     }];
     
     
@@ -124,7 +126,85 @@
     return task;
 }
 
--(void)handleResponse:(NSURLResponse *)response object:(id)responseObject error:(NSError *) error request:(SJTRequest *)request completionHandler:(SJTCompletionHandler )completionHandler
+
+-(NSURLSessionUploadTask*)uploadDataTaskWith:(SJTUploadRequest *)uploadRequest processBlock:(SJTProgressBlock)proccessBlock completionHandler:(SJTCompletionHandler)completionHandler
+{
+    NSMutableURLRequest * urlRequest;
+    //自定义请求
+    if (uploadRequest.customRequest) {
+        
+        urlRequest  = [uploadRequest.customRequest mutableCopy];
+        
+    }else
+    {
+        [self processRequestWithConfig:uploadRequest];
+        AFHTTPRequestSerializer *requestSerializer = [self requestSerializerForRequest:uploadRequest];
+        
+         __block NSError *  requestSerializationError = nil;
+        urlRequest = [requestSerializer multipartFormRequestWithMethod:@"POST" URLString:uploadRequest.url parameters:uploadRequest.requestParams constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            [uploadRequest.uploadFormDatas  enumerateObjectsUsingBlock:^(SJTFormData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (obj.fileData) {
+                    if (obj.fileName && obj.mimeType) {
+                        [formData appendPartWithFileData:obj.fileData name:obj.name fileName:obj.fileName mimeType:obj.mimeType];
+                    } else {
+                        [formData appendPartWithFormData:obj.fileData name:obj.name];
+                    }
+                } else if (obj.fileURL) {
+                    NSError *fileError = nil;
+                    if (obj.fileName && obj.mimeType) {
+                        [formData appendPartWithFileURL:obj.fileURL name:obj.name fileName:obj.fileName mimeType:obj.mimeType error:&fileError];
+                    } else {
+                        [formData appendPartWithFileURL:obj.fileURL name:obj.name error:&fileError];
+                    }
+                    if (fileError) {
+                        requestSerializationError = fileError;
+                        *stop = YES;
+                    }
+                }
+            }];
+            
+        } error:&requestSerializationError];
+        
+        if (requestSerializationError && completionHandler) {
+            
+            completionHandler(uploadRequest,requestSerializationError);
+            return nil;
+        }
+    }
+    
+    __weak __typeof(self)weakSelf = self;
+    NSURLSessionUploadTask *uploadTask = [_manager uploadTaskWithStreamedRequest:urlRequest progress:proccessBlock completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        [strongSelf handleResponse:response object:responseObject error:error request:uploadRequest completionHandler:completionHandler];
+        
+    }];
+    
+    uploadRequest.requestTask = uploadTask;
+    
+    if ([uploadRequest.requestTask respondsToSelector:@selector(priority)]){
+        switch (uploadRequest.requestPriority) {
+            case SJTRequestPriorityLow:
+                uploadTask.priority = NSURLSessionTaskPriorityLow;
+                break;
+            case SJTRequestPriorityDefault:
+                uploadTask.priority = NSURLSessionTaskPriorityDefault;
+                break;
+            case SJTRequestPriorityHigh:
+                uploadTask.priority = NSURLSessionTaskPriorityHigh;
+                break;
+            default:
+                //默认上传优先级都是低的，保证其它请求的优先级
+                uploadTask.priority = NSURLSessionTaskPriorityLow;
+                break;
+        }
+    }
+    
+    [uploadTask resume];
+    return uploadTask;
+}
+
+
+-(void)handleResponse:(NSURLResponse *)response object:(id)responseObject error:(NSError *) error request:(SJTBaseRequest *)request completionHandler:(SJTCompletionHandler )completionHandler
 {
     NSError * __autoreleasing serializationError = nil;
     
@@ -157,7 +237,7 @@
 
 }
 
--(void )processRequestWithConfig:(SJTRequest *)request
+-(void )processRequestWithConfig:(SJTBaseRequest *)request
 {
     if (!request.requestSerializerType) {
         request.requestSerializerType = [SJTNetworkingConfig shareConfig].requestSerializerType;
@@ -171,12 +251,13 @@
 }
 
 
-- (AFHTTPRequestSerializer *)requestSerializerForRequest:(SJTRequest *)request {
+- (AFHTTPRequestSerializer *)requestSerializerForRequest:(SJTBaseRequest *)request {
     AFHTTPRequestSerializer *requestSerializer = nil;
-    if (request.requestSerializerType == kSJTRequestSerializerHTTP) {
-        requestSerializer = [AFHTTPRequestSerializer serializer];
-    } else if (request.requestSerializerType == kSJTRequestSerializerJSON) {
+    
+    if (request.requestSerializerType == kSJTRequestSerializerJSON) {
         requestSerializer = [AFJSONRequestSerializer serializer];
+    } else {
+        requestSerializer = [AFHTTPRequestSerializer serializer];
     }
     
     requestSerializer.timeoutInterval = [request requestTimeoutInterval];

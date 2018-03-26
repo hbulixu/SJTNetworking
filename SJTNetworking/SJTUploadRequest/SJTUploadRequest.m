@@ -7,8 +7,44 @@
 //
 
 #import "SJTUploadRequest.h"
-
+#import "SJTUploadRequestEngine.h"
 @implementation SJTUploadRequest
+
+- (void)clearCompletionBlock
+{
+    self.successBlock = nil;
+    self.failureBlock = nil;
+    self.processBlock = nil;
+}
+
+-(void)start
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if ([self.delegate respondsToSelector:@selector(uploadRequestWillStart:)]) {
+            [self.delegate uploadRequestWillStart:self];
+        }
+        
+    });
+    
+    [[SJTUploadRequestEngine shareEngine] startUploadRequest:self];
+}
+
+-(void)cancell
+{
+    
+    [[SJTUploadRequestEngine shareEngine] cancelUploadRequest:self];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if ([self.delegate respondsToSelector:@selector(uploadRequestCanceled:)]) {
+            [self.delegate uploadRequestCanceled:self];
+        }
+        
+    });
+    self.delegate = nil;
+}
+
 
 @end
 

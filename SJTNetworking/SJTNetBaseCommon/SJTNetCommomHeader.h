@@ -11,6 +11,9 @@
 @class SJTBaseRequest;
 @class SJTFormData;
 @class SJTBatchRequest;
+@class SJTRequest;
+@class SJTUploadRequest;
+
 typedef NS_ENUM(NSUInteger, SJTRequestMethod) {
     SJTRequestMethodGet,
     SJTRequestMethodPost
@@ -36,9 +39,15 @@ typedef NS_ENUM(NSInteger, SJTResponseSerializerType) {
 };
 
 
-typedef void(^SJTRequestSuccessBlock)( SJTBaseRequest *request);
-typedef void(^SJTRequestFailureBlock)( SJTBaseRequest *request, NSError * error);
+typedef void(^SJTRequestSuccessBlock)( SJTRequest *request);
+typedef void(^SJTRequestFailureBlock)( SJTRequest *request, NSError * error);
 
 typedef void(^SJTBatchRequestSuccessBlock)( SJTBatchRequest *request);
 typedef void(^SJTBatchRequestFailureBlock)( SJTBatchRequest *request);
+
+typedef void(^SJTUploadRequestSuccessBlock)( SJTUploadRequest *request);
+typedef void(^SJTUploadRequestFailureBlock)( SJTUploadRequest *request, NSError * error);
+
+typedef void (^SJTProgressBlock)(NSProgress *progress);
+
 #endif /* SJTNetCommomHeader_h */

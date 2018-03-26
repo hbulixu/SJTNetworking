@@ -8,9 +8,36 @@
 
 #import "SJTBaseRequest.h"
 
+@protocol SJTUploadRequestDelegate <NSObject>
+
+@optional
+
+- (void)uploadRequestWillStart:(SJTUploadRequest *)request;
+
+- (void)uploadRequestCanceled:(SJTUploadRequest *)request;
+
+- (void)uploadRequestSuccess:(SJTUploadRequest *)request;
+
+- (void)uploadRequestFailed:(SJTUploadRequest *)request error:(NSError *)error;
+
+- (void)uploadRequestProcess:(SJTUploadRequest *)request progress:(NSProgress *)progress;
+
+@end
+
 @interface SJTUploadRequest : SJTBaseRequest
 
 @property (nonatomic, strong) NSMutableArray<SJTFormData *> *uploadFormDatas;
+
+@property (nonatomic, copy) SJTProgressBlock  processBlock;
+
+@property (nonatomic, weak) id <SJTUploadRequestDelegate> delegate;
+
+@property (nonatomic, copy)SJTUploadRequestSuccessBlock successBlock;
+
+@property (nonatomic, copy)SJTUploadRequestFailureBlock failureBlock;
+
+
+-(void)clearCompletionBlock;
 @end
 
 @interface SJTFormData : NSObject
