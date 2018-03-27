@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37388F5F206A1C5A00B0C3F4 /* SJTBatchUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 37388F5E206A1C5A00B0C3F4 /* SJTBatchUploadRequest.m */; };
+		37388F62206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 37388F61206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.m */; };
 		377EA4BD204E78D300AA7D8B /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4B1204E78D300AA7D8B /* AFHTTPSessionManager.m */; };
 		377EA4BE204E78D300AA7D8B /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4B4204E78D300AA7D8B /* AFNetworkReachabilityManager.m */; };
 		377EA4BF204E78D300AA7D8B /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4B6204E78D300AA7D8B /* AFSecurityPolicy.m */; };
@@ -52,6 +54,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		37388F5D206A1C5A00B0C3F4 /* SJTBatchUploadRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTBatchUploadRequest.h; sourceTree = "<group>"; };
+		37388F5E206A1C5A00B0C3F4 /* SJTBatchUploadRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTBatchUploadRequest.m; sourceTree = "<group>"; };
+		37388F60206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTBatchUploadRequestEngine.h; sourceTree = "<group>"; };
+		37388F61206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTBatchUploadRequestEngine.m; sourceTree = "<group>"; };
 		377EA4B0204E78D300AA7D8B /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		377EA4B1204E78D300AA7D8B /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		377EA4B2204E78D300AA7D8B /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -189,6 +195,10 @@
 				377EA4CD2057BFF300AA7D8B /* SJTUploadRequest.m */,
 				37BB528F2068A033002FD64A /* SJTUploadRequestEngine.h */,
 				37BB52902068A033002FD64A /* SJTUploadRequestEngine.m */,
+				37388F5D206A1C5A00B0C3F4 /* SJTBatchUploadRequest.h */,
+				37388F5E206A1C5A00B0C3F4 /* SJTBatchUploadRequest.m */,
+				37388F60206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.h */,
+				37388F61206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.m */,
 			);
 			path = SJTUploadRequest;
 			sourceTree = "<group>";
@@ -403,6 +413,7 @@
 				377EA4C1204E78D300AA7D8B /* AFURLResponseSerialization.m in Sources */,
 				37C3D3E52047DD8500785567 /* main.m in Sources */,
 				37C3D4182047DDD700785567 /* SJTNetworkingConfig.m in Sources */,
+				37388F5F206A1C5A00B0C3F4 /* SJTBatchUploadRequest.m in Sources */,
 				37BB52882063D1C7002FD64A /* SJTBatchRequest.m in Sources */,
 				377EA4BD204E78D300AA7D8B /* AFHTTPSessionManager.m in Sources */,
 				377EA4C52057741900AA7D8B /* SJTRequestEngine.m in Sources */,
@@ -410,6 +421,7 @@
 				37BB528420639CD0002FD64A /* SJTNetworkCenter.m in Sources */,
 				377EA4C0204E78D300AA7D8B /* AFURLRequestSerialization.m in Sources */,
 				377EA4C2204E78D300AA7D8B /* AFURLSessionManager.m in Sources */,
+				37388F62206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.m in Sources */,
 				37BB52912068A033002FD64A /* SJTUploadRequestEngine.m in Sources */,
 				377EA4D12057F35900AA7D8B /* SJTRequstPrivate.m in Sources */,
 				377EA4BE204E78D300AA7D8B /* AFNetworkReachabilityManager.m in Sources */,

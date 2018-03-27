@@ -207,32 +207,53 @@
 -(void)handleResponse:(NSURLResponse *)response object:(id)responseObject error:(NSError *) error request:(SJTBaseRequest *)request completionHandler:(SJTCompletionHandler )completionHandler
 {
     NSError * __autoreleasing serializationError = nil;
-    
     NSError *requestError = nil;
-    request.responseObject = responseObject;
-    if ([request.responseObject isKindOfClass:[NSData class]]) {
-        request.responseData = responseObject;
-        switch (request.responseSerializerType) {
-            case kSJTResponseSerializerHTTP:
-                // Default serializer. Do nothing.
-                break;
-            case kSJTesponseSerializerJSON:
-                request.responseObject = [self.jsonResponseSerializer responseObjectForResponse:response data:request.responseData error:&serializationError];
-                request.responseJSONObject = request.responseObject;
-                break;
-            case kSJTesponseSerializerXML:
-                request.responseObject = [self.xmlParserResponseSerialzier responseObjectForResponse:response data:request.responseData error:&serializationError];
-                break;
+    NSError *responseValidateError = nil;
+    BOOL success = YES;
+    if (error) {
+        success = NO;
+        requestError = error;
+    }
+    
+    //报文解析
+    if (success) {
+        request.responseObject = responseObject;
+        if ([request.responseObject isKindOfClass:[NSData class]]) {
+            request.responseData = responseObject;
+            switch (request.responseSerializerType) {
+                case kSJTResponseSerializerHTTP:
+                    // Default serializer. Do nothing.
+                    break;
+                case kSJTesponseSerializerJSON:
+                    request.responseObject = [self.jsonResponseSerializer responseObjectForResponse:response data:request.responseData error:&serializationError];
+                    request.responseJSONObject = request.responseObject;
+                    break;
+                case kSJTesponseSerializerXML:
+                    request.responseObject = [self.xmlParserResponseSerialzier responseObjectForResponse:response data:request.responseData error:&serializationError];
+                    break;
+            }
+        }
+        
+        if(serializationError)
+        {
+            success = NO;
+            requestError = serializationError;
+        }
+        
+    }
+    
+    //业务校验接口
+    if(success)
+    {
+        if (request.responseValidate) {
+            responseValidateError = request.responseValidate(request);
+        }
+        if (responseValidateError) {
+            success = NO;
+            requestError = responseValidateError;
         }
     }
-    
-    if (error) {
-        requestError = error;
-    }else if(serializationError)
-    {
-        requestError = serializationError;
-    }
-    
+
     completionHandler(request,requestError);
 
 }

@@ -7,7 +7,9 @@
 //
 
 #import "SJTNetworkCenter.h"
-
+#import "SJTUploadRequest.h"
+#import "SJTRequest.h"
+#import "SJTBatchRequest.h"
 @implementation SJTNetworkCenter
 
 +(SJTRequest *)sendRequest:(SJTRequest *) request
@@ -61,4 +63,48 @@
     [batchRequest start];
     return batchRequest;
 }
+
+
++(SJTUploadRequest *)sendUploadRequest:(SJTUploadRequest *) uploadRequest
+                               process:(SJTProgressBlock)process
+                               success:(SJTUploadRequestSuccessBlock) success
+                               failure:(SJTUploadRequestFailureBlock) failure
+{
+    if (!uploadRequest) {
+        return nil;
+    }
+    
+    uploadRequest.processBlock = process;
+    uploadRequest.successBlock = success;
+    uploadRequest.failureBlock = failure;
+    [uploadRequest start];
+    return uploadRequest;
+}
+
+
++(SJTUploadRequest *)POST:(NSString *)URLString
+constructingBodyWithBlock:(void(^)(SJTFormDataArray * formDataArray))block
+               parameters:(NSDictionary*)parameters
+                  process:(SJTProgressBlock)process
+                  success:(SJTUploadRequestSuccessBlock) success
+                  failure:(SJTUploadRequestFailureBlock) failure
+{
+    SJTUploadRequest * uploadRequest = [SJTUploadRequest new];
+    uploadRequest.url = URLString;
+    uploadRequest.requestParams = parameters;
+    uploadRequest.successBlock = success;
+    uploadRequest.failureBlock = failure;
+    uploadRequest.processBlock = process;
+    
+    if (block) {
+        SJTFormDataArray * formDatas = [SJTFormDataArray new];
+        block(formDatas);
+        uploadRequest.uploadFormDatas = [formDatas.formDataArray copy];
+    }
+    
+    [uploadRequest start];
+    return uploadRequest;
+}
+
+
 @end

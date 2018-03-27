@@ -80,4 +80,18 @@
 + (instancetype)formDataWithName:(NSString *)name fileURL:(NSURL *)fileURL;
 
 + (instancetype)formDataWithName:(NSString *)name fileName:(NSString *)fileName mimeType:(NSString *)mimeType fileURL:(NSURL *)fileURL;
+
+@end
+
+@interface SJTFormDataArray :NSObject
+
+@property (nonatomic,strong,readonly)NSMutableArray * formDataArray;
+
+-(void)appendFormDataWithName:(NSString *)name fileData:(NSData *)fileData;
+
+-(void)appendFormDataWithName:(NSString *)name fileName:(NSString *)fileName mimeType:(NSString *)mimeType fileData:(NSData *)fileData;
+
+-(void)appendFormDataWithName:(NSString *)name fileURL:(NSURL *)fileURL;
+
+-(void)appendFormDataWithName:(NSString *)name fileName:(NSString *)fileName mimeType:(NSString *)mimeType fileURL:(NSURL *)fileURL;
 @end

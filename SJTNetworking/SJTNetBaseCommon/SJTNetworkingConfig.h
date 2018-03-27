@@ -25,5 +25,15 @@
 /**统一的http请求头*/
 @property (nonatomic,strong)NSDictionary * requestHeaderFieldValueDictionary;
 
+/**
+ 为业务保留的接口，当校验不通过时会调用failure分支,返回error为是吧，nil为成功
+ */
+@property (nonatomic,copy)SJTResponseValidate responseValidate;
+
+/**
+ 为业务保留接口，当校验不通过时，不会缓存
+ */
+@property (nonatomic,copy)SJTResponseCanCache responseCanCache;
+
 +(instancetype)shareConfig;
 @end

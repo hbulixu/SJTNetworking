@@ -23,6 +23,16 @@
 
 @property (nonatomic, assign, readonly) BOOL isDataFromCache;
 
+/**
+ 为业务保留的接口，当校验不通过时会调用failure分支,返回error为是吧，nil为成功
+ */
+@property (nonatomic,copy)SJTResponseValidate responseValidate;
+
+/**
+ 为业务保留接口，当校验不通过时，不会缓存
+ */
+@property (nonatomic,copy)SJTResponseCanCache responseCanCache;
+
 @property (nonatomic, strong)NSString * url;
 
 @property (nonatomic, assign)SJTRequestMethod requestMethod;

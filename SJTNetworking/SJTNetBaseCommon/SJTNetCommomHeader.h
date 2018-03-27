@@ -13,6 +13,8 @@
 @class SJTBatchRequest;
 @class SJTRequest;
 @class SJTUploadRequest;
+@class SJTFormDataArray;
+@class SJTBatchUploadRequest;
 
 typedef NS_ENUM(NSUInteger, SJTRequestMethod) {
     SJTRequestMethodGet,
@@ -48,6 +50,12 @@ typedef void(^SJTBatchRequestFailureBlock)( SJTBatchRequest *request);
 typedef void(^SJTUploadRequestSuccessBlock)( SJTUploadRequest *request);
 typedef void(^SJTUploadRequestFailureBlock)( SJTUploadRequest *request, NSError * error);
 
+typedef void (^SJTBatchUploadRequestSuccessBlock)(SJTBatchUploadRequest *request);
+typedef void (^SJTBatchUploadRequestFailureBlock)(SJTBatchUploadRequest *request, NSError * error);
+
 typedef void (^SJTProgressBlock)(NSProgress *progress);
+
+typedef NSError * (^SJTResponseValidate)(SJTBaseRequest *request);
+typedef BOOL (^SJTResponseCanCache) (SJTBaseRequest *request);
 
 #endif /* SJTNetCommomHeader_h */

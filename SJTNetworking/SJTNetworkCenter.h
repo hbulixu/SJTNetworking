@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SJTRequest.h"
-#import "SJTBatchRequest.h"
+#import "SJTNetCommomHeader.h"
 @interface SJTNetworkCenter : NSObject
 
 //自定义request
@@ -19,12 +18,12 @@
 //通用request
 
 +(SJTRequest *)GET:(NSString *)URLString
-        parameters:(id)parameters
+        parameters:(NSDictionary *)parameters
            success:(SJTRequestSuccessBlock) success
            failure:(SJTRequestFailureBlock) failure;
 
 +(SJTRequest *)POST:(NSString *)URLString
-        parameters:(id)parameters
+        parameters:(NSDictionary *)parameters
            success:(SJTRequestSuccessBlock) success
            failure:(SJTRequestFailureBlock) failure;
 
@@ -33,6 +32,21 @@
 +(SJTBatchRequest *)sendRequestArray:(NSArray <SJTRequest *>*)requestArray
                         success:(SJTBatchRequestSuccessBlock) success
                         failure:(SJTBatchRequestFailureBlock) failure;
+
+//上传定制
++(SJTUploadRequest *)sendUploadRequest:(SJTUploadRequest *) uploadRequest
+                         process:(SJTProgressBlock)process
+                         success:(SJTUploadRequestSuccessBlock) success
+                         failure:(SJTUploadRequestFailureBlock) failure;
+
++(SJTUploadRequest *)POST:(NSString *)URLString
+constructingBodyWithBlock:(void(^)(SJTFormDataArray * formDataArray))block
+               parameters:(NSDictionary*)parameters
+                  process:(SJTProgressBlock)process
+                  success:(SJTUploadRequestSuccessBlock) success
+                  failure:(SJTUploadRequestFailureBlock) failure;
+
+
 
 
 @end

@@ -84,3 +84,52 @@
 }
 
 @end
+
+@interface SJTFormDataArray()
+
+@property (nonatomic,strong,readwrite)NSMutableArray * formDataArray;
+
+@end
+
+@implementation SJTFormDataArray
+
+-(instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _formDataArray = [NSMutableArray array];
+    }
+    return self;
+}
+
+-(void)appendFormDataWithName:(NSString *)name fileData:(NSData *)fileData
+{
+    SJTFormData * formData = [SJTFormData formDataWithName:name fileData:fileData];
+    [_formDataArray addObject:formData];
+}
+
+-(void)appendFormDataWithName:(NSString *)name fileName:(NSString *)fileName mimeType:(NSString *)mimeType fileData:(NSData *)fileData
+{
+    SJTFormData * formData = [SJTFormData formDataWithName:name fileName:fileName mimeType:mimeType fileData:fileData];
+    [_formDataArray addObject:formData];
+}
+
+-(void)appendFormDataWithName:(NSString *)name fileURL:(NSURL *)fileURL
+{
+    SJTFormData * formData = [SJTFormData formDataWithName:name fileURL:fileURL];
+    [_formDataArray addObject:formData];
+}
+
+-(void)appendFormDataWithName:(NSString *)name fileName:(NSString *)fileName mimeType:(NSString *)mimeType fileURL:(NSURL *)fileURL
+{
+    SJTFormData * formData = [SJTFormData formDataWithName:name fileName:fileName mimeType:mimeType fileURL:fileURL];
+    [_formDataArray addObject:formData];
+}
+@end
+
+
+
+
+
+
+
