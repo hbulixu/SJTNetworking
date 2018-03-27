@@ -59,6 +59,17 @@
         }
     });
 }
+
+- (void)reTry
+{
+    for (SJTUploadRequest * uploadRequest in _requestArray) {
+        if (uploadRequest.error) {
+            uploadRequest.delegate = self;
+            [uploadRequest start];
+        }
+    }
+}
+
 #pragma mark - SJTUploadRequestDelegate
 
 //都在主线程中

@@ -10,6 +10,7 @@
 #import "SJTUploadRequest.h"
 #import "SJTRequest.h"
 #import "SJTBatchRequest.h"
+#import "SJTBatchUploadRequest.h"
 @implementation SJTNetworkCenter
 
 +(SJTRequest *)sendRequest:(SJTRequest *) request
@@ -106,5 +107,15 @@ constructingBodyWithBlock:(void(^)(SJTFormDataArray * formDataArray))block
     return uploadRequest;
 }
 
++(SJTBatchUploadRequest *)sendUploadRequestArray:(NSArray <SJTUploadRequest *>*)requestArray
+                                         success:(SJTBatchUploadRequestSuccessBlock) success
+                                         failure:(SJTBatchUploadRequestFailureBlock) failure
+{
+    SJTBatchUploadRequest * request = [[SJTBatchUploadRequest alloc]initWithUploadRequestArray:requestArray];
+    request.successBlock = success;
+    request.failureBlock = failure;
+    [request start];
+    return request;
+}
 
 @end

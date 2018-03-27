@@ -47,6 +47,9 @@ constructingBodyWithBlock:(void(^)(SJTFormDataArray * formDataArray))block
                   failure:(SJTUploadRequestFailureBlock) failure;
 
 
++(SJTBatchUploadRequest *)sendUploadRequestArray:(NSArray <SJTUploadRequest *>*)requestArray
+                             success:(SJTBatchUploadRequestSuccessBlock) success
+                             failure:(SJTBatchUploadRequestFailureBlock) failure;
 
 
 @end
