@@ -31,8 +31,6 @@
 
 @property (nonatomic, copy)SJTRequestFailureBlock failureBlock;
 
-
-
 +(instancetype)requestWithUrl:(NSString *)url requestMethod:(SJTRequestMethod)requestMethod requestParams:(NSDictionary *)requestParams;
 
 - (void)clearCompletionBlock;

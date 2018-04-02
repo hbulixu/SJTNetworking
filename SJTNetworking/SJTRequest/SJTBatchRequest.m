@@ -58,6 +58,12 @@
 
 }
 
+-(void)clearCompletionBlock
+{
+    self.successBlock = nil;
+    self.failureBlock = nil;
+}
+
 #pragma mark -SJTRequestDelegate
 
 - (void)requestSuccess:(SJTRequest *)request
@@ -75,6 +81,8 @@
         if (self.successBlock) {
             self.successBlock(self);
         }
+        [self clearCompletionBlock];
+        self.delegate = nil;
     }
 }
 
@@ -90,6 +98,8 @@
     if (self.failureBlock) {
         self.failureBlock(self);
     }
+    [self clearCompletionBlock];
+    self.delegate = nil;
 }
 
 @end

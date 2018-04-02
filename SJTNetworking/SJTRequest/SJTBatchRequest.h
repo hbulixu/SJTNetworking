@@ -38,5 +38,7 @@
 
 - (void)cancell;
 
+-(void)clearCompletionBlock;
+
 
 @end

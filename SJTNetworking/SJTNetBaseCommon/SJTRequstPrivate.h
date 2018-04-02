@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong, readwrite) NSURLSessionTask *requestTask;
 
+@property (nonatomic, strong, readwrite) NSURLResponse * response;
+
 @property (nonatomic, strong, readwrite) id responseObject;
 
 @property (nonatomic, strong, readwrite) id responseJSONObject;

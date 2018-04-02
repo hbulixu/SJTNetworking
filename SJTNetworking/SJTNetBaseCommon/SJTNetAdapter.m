@@ -12,6 +12,7 @@
 #import "SJTRequstPrivate.h"
 #import "AFNetworking.h"
 #import "SJTNetworkingConfig.h"
+#import "SJTDownLoadRequest.h"
 @interface SJTNetAdapter()
 
 @property (nonatomic,strong)AFJSONResponseSerializer * jsonResponseSerializer;
@@ -204,11 +205,77 @@
 }
 
 
+
+-(NSURLSessionDownloadTask *)downloadDataTaskWith:(SJTDownLoadRequest *)downLoadRequest processBlock:(SJTProgressBlock)processBlock completionHandler:(SJTCompletionHandler)completionHandler
+{
+    NSMutableURLRequest * urlRequest;
+    //自定义请求
+    if (downLoadRequest.customRequest) {
+        urlRequest = [downLoadRequest.customRequest mutableCopy];
+    }else
+    {
+        [self processRequestWithConfig:downLoadRequest];
+        SJTRequestMethod method = downLoadRequest.requestMethod;
+        NSString * url = downLoadRequest.url;
+        NSDictionary * params = downLoadRequest.requestParams;
+        
+        __autoreleasing NSError *  requestSerializationError = nil;
+        
+        
+        NSString * requestMethod;
+        switch (method) {
+            case SJTRequestMethodGet:
+                requestMethod = @"GET";
+                break;
+            case SJTRequestMethodPost:
+                requestMethod = @"POST";
+                break;
+            default:
+                break;
+                
+        }
+        
+        AFHTTPRequestSerializer *requestSerializer = [self requestSerializerForRequest:downLoadRequest];
+        
+        urlRequest = [requestSerializer requestWithMethod:requestMethod URLString:url parameters:params error:&requestSerializationError];
+        
+        if (requestSerializationError && completionHandler) {
+            
+            completionHandler(downLoadRequest,requestSerializationError);
+            return nil;
+        }
+    }
+    
+    NSURL *downloadFileSavePath;
+    BOOL isDirectory;
+    if(![[NSFileManager defaultManager] fileExistsAtPath:downLoadRequest.downLoadPath isDirectory:&isDirectory]) {
+        isDirectory = NO;
+    }
+    if (isDirectory) {
+        NSString *fileName = [urlRequest.URL lastPathComponent];
+        downloadFileSavePath = [NSURL fileURLWithPath:[NSString pathWithComponents:@[downLoadRequest.downLoadPath, fileName]] isDirectory:NO];
+    } else {
+        downloadFileSavePath = [NSURL fileURLWithPath:downLoadRequest.downLoadPath isDirectory:NO];
+    }
+
+    
+    [_manager downloadTaskWithRequest:urlRequest progress:processBlock destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        return downloadFileSavePath;
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        downLoadRequest.response = response;
+        completionHandler(downLoadRequest,error);
+
+    }];
+    return nil;
+}
+
 -(void)handleResponse:(NSURLResponse *)response object:(id)responseObject error:(NSError *) error request:(SJTBaseRequest *)request completionHandler:(SJTCompletionHandler )completionHandler
 {
     NSError * __autoreleasing serializationError = nil;
     NSError *requestError = nil;
     NSError *responseValidateError = nil;
+    request.response = response;
+    
     BOOL success = YES;
     if (error) {
         success = NO;

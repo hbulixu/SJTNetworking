@@ -70,6 +70,12 @@
     }
 }
 
+-(void)clearCompletionBlock
+{
+    self.successBlock = nil;
+    self.failureBlock = nil;
+}
+
 #pragma mark - SJTUploadRequestDelegate
 
 //都在主线程中
@@ -89,6 +95,8 @@
         if (self.successBlock) {
             self.successBlock(self);
         }
+        [self clearCompletionBlock];
+        self.delegate = nil;
     }
 }
 
@@ -105,6 +113,8 @@
         if (self.failureBlock) {
             self.failureBlock(self,error);
         }
+        [self clearCompletionBlock];
+        self.delegate = nil;
     }
 }
 @end

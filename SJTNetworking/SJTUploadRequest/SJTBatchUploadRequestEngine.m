@@ -33,6 +33,7 @@
 {
     self = [super init];
     if (self) {
+        _lock = [NSRecursiveLock new];
         _batchUploadRequestArray = [NSMutableArray array];
     }
     return self;

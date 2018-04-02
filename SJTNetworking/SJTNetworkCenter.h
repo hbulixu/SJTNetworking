@@ -12,8 +12,8 @@
 
 //自定义request
 +(SJTRequest *)sendRequest:(SJTRequest *) request
-           success:(SJTRequestSuccessBlock) success
-           failure:(SJTRequestFailureBlock) failure;
+                   success:(SJTRequestSuccessBlock) success
+                   failure:(SJTRequestFailureBlock) failure;
 
 //通用request
 
@@ -23,15 +23,15 @@
            failure:(SJTRequestFailureBlock) failure;
 
 +(SJTRequest *)POST:(NSString *)URLString
-        parameters:(NSDictionary *)parameters
-           success:(SJTRequestSuccessBlock) success
-           failure:(SJTRequestFailureBlock) failure;
+         parameters:(NSDictionary *)parameters
+            success:(SJTRequestSuccessBlock) success
+            failure:(SJTRequestFailureBlock) failure;
 
 
 //批量请求GET POST不明确，需要自定义request
 +(SJTBatchRequest *)sendRequestArray:(NSArray <SJTRequest *>*)requestArray
-                        success:(SJTBatchRequestSuccessBlock) success
-                        failure:(SJTBatchRequestFailureBlock) failure;
+                             success:(SJTBatchRequestSuccessBlock) success
+                             failure:(SJTBatchRequestFailureBlock) failure;
 
 //上传定制
 +(SJTUploadRequest *)sendUploadRequest:(SJTUploadRequest *) uploadRequest
@@ -46,10 +46,21 @@ constructingBodyWithBlock:(void(^)(SJTFormDataArray * formDataArray))block
                   success:(SJTUploadRequestSuccessBlock) success
                   failure:(SJTUploadRequestFailureBlock) failure;
 
-
 +(SJTBatchUploadRequest *)sendUploadRequestArray:(NSArray <SJTUploadRequest *>*)requestArray
-                             success:(SJTBatchUploadRequestSuccessBlock) success
-                             failure:(SJTBatchUploadRequestFailureBlock) failure;
+                                         success:(SJTBatchUploadRequestSuccessBlock) success
+                                         failure:(SJTBatchUploadRequestFailureBlock) failure;
 
+//download
++(SJTDownLoadRequest *)GET:(NSString *)URLString
+                parameters:(NSDictionary *)parameters
+                  filePath:(NSString *)downLoadFilepath
+                   process:(SJTProgressBlock)process
+                   success:(SJTDownloadRequestSuccessBlock)success
+                   failure:(SJTDownloadRequestFailureBlock)failure;
+                
 
++(SJTDownLoadRequest *)sendDownloadRequest:(SJTDownLoadRequest *)downloadRequest
+                                   process:(SJTProgressBlock)process
+                                   success:(SJTDownloadRequestSuccessBlock)success
+                                   failure:(SJTDownloadRequestFailureBlock)failure;
 @end

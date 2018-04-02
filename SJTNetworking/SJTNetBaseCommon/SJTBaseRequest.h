@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong, readonly) NSURLSessionTask *requestTask;
 
+@property (nonatomic, strong, readonly) NSURLResponse * response;
+
 @property (nonatomic, strong, readonly) id responseObject;
 
 @property (nonatomic, strong, readonly) id responseData;
@@ -59,6 +61,8 @@
 -(void)start;
 
 -(void)cancell;
+
+
 
 
 @end

@@ -11,6 +11,7 @@
 #import "SJTRequest.h"
 #import "SJTBatchRequest.h"
 #import "SJTBatchUploadRequest.h"
+#import "SJTDownLoadRequest.h"
 @implementation SJTNetworkCenter
 
 +(SJTRequest *)sendRequest:(SJTRequest *) request
@@ -107,6 +108,7 @@ constructingBodyWithBlock:(void(^)(SJTFormDataArray * formDataArray))block
     return uploadRequest;
 }
 
+
 +(SJTBatchUploadRequest *)sendUploadRequestArray:(NSArray <SJTUploadRequest *>*)requestArray
                                          success:(SJTBatchUploadRequestSuccessBlock) success
                                          failure:(SJTBatchUploadRequestFailureBlock) failure
@@ -116,6 +118,40 @@ constructingBodyWithBlock:(void(^)(SJTFormDataArray * formDataArray))block
     request.failureBlock = failure;
     [request start];
     return request;
+}
+
++(SJTDownLoadRequest *)GET:(NSString *)URLString
+                parameters:(NSDictionary *)parameters
+                  filePath:(NSString *)downLoadFilepath
+                   process:(SJTProgressBlock)process
+                   success:(SJTDownloadRequestSuccessBlock)success
+                   failure:(SJTDownloadRequestFailureBlock)failure
+{
+    SJTDownLoadRequest * requst = [SJTDownLoadRequest new];
+    requst.url = URLString;
+    requst.requestParams = parameters;
+    requst.downLoadPath = downLoadFilepath;
+    requst.processBlock = process;
+    requst.successBlock = success;
+    requst.failureBlock = failure;
+    [requst start];
+    return requst;
+}
+
+
++(SJTDownLoadRequest *)sendDownloadRequest:(SJTDownLoadRequest *)downloadRequest
+                                   process:(SJTProgressBlock)process
+                                   success:(SJTDownloadRequestSuccessBlock)success
+                                   failure:(SJTDownloadRequestFailureBlock)failure
+{
+    if (!downloadRequest) {
+        return nil;
+    }
+    downloadRequest.processBlock = process;
+    downloadRequest.successBlock = success;
+    downloadRequest.failureBlock = failure;
+    [downloadRequest start];
+    return downloadRequest;
 }
 
 @end

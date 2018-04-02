@@ -18,4 +18,7 @@ typedef void(^SJTCompletionHandler)(SJTBaseRequest * request, NSError * error);
 -(NSURLSessionDataTask*)dataTaskWith:(SJTRequest *)request completionHandler:(SJTCompletionHandler )completionHandler;
 
 -(NSURLSessionUploadTask*)uploadDataTaskWith:(SJTUploadRequest *)uploadRequest processBlock:(SJTProgressBlock)proccessBlock completionHandler:(SJTCompletionHandler)completionHandler;
+
+-(NSURLSessionDownloadTask *)downloadDataTaskWith:(SJTDownLoadRequest *)downLoadRequest processBlock:(SJTProgressBlock)processBlock completionHandler:(SJTCompletionHandler)completionHandler;
+
 @end
