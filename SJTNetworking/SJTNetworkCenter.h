@@ -63,4 +63,9 @@ constructingBodyWithBlock:(void(^)(SJTFormDataArray * formDataArray))block
                                    process:(SJTProgressBlock)process
                                    success:(SJTDownloadRequestSuccessBlock)success
                                    failure:(SJTDownloadRequestFailureBlock)failure;
+
++(SJTBatchDownloadRequest *)sendDownLoadRequestArray:(NSArray <SJTDownLoadRequest *>*)requestArray
+                                             success:(SJTBatchDownloadRequestSuccessBlock) success
+                                             failure:(SJTBatchDownloadRequestFailureBlock) failure;
+
 @end

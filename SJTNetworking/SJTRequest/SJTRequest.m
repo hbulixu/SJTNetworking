@@ -46,7 +46,6 @@
         }
         
     });
-    self.delegate = nil;
 }
 
 - (void)clearCompletionBlock

@@ -42,7 +42,7 @@
         }
         
     });
-    self.delegate = nil;
+    [self clearCompletionBlock];
 }
 
 

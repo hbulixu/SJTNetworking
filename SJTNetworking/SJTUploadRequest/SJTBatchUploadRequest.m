@@ -96,7 +96,7 @@
             self.successBlock(self);
         }
         [self clearCompletionBlock];
-        self.delegate = nil;
+  
     }
 }
 
@@ -114,7 +114,6 @@
             self.failureBlock(self,error);
         }
         [self clearCompletionBlock];
-        self.delegate = nil;
     }
 }
 @end

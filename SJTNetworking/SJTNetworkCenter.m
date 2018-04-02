@@ -12,6 +12,7 @@
 #import "SJTBatchRequest.h"
 #import "SJTBatchUploadRequest.h"
 #import "SJTDownLoadRequest.h"
+#import "SJTBatchDownloadRequest.h"
 @implementation SJTNetworkCenter
 
 +(SJTRequest *)sendRequest:(SJTRequest *) request
@@ -152,6 +153,17 @@ constructingBodyWithBlock:(void(^)(SJTFormDataArray * formDataArray))block
     downloadRequest.failureBlock = failure;
     [downloadRequest start];
     return downloadRequest;
+}
+
++(SJTBatchDownloadRequest *)sendDownLoadRequestArray:(NSArray <SJTDownLoadRequest *>*)requestArray
+                                             success:(SJTBatchDownloadRequestSuccessBlock) success
+                                             failure:(SJTBatchDownloadRequestFailureBlock) failure
+{
+    SJTBatchDownloadRequest * batchRequest = [[SJTBatchDownloadRequest alloc] initWithDownloadRequestArray:requestArray];
+    batchRequest.successBlock = success;
+    batchRequest.failureBlock = failure;
+    [batchRequest start];
+    return batchRequest;
 }
 
 @end

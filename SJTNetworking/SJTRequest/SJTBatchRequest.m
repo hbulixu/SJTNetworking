@@ -55,6 +55,7 @@
             [self.delegate batchRequestCancelled:self];
         }
     });
+    [self clearCompletionBlock];
 
 }
 
@@ -82,7 +83,7 @@
             self.successBlock(self);
         }
         [self clearCompletionBlock];
-        self.delegate = nil;
+
     }
 }
 
@@ -99,7 +100,7 @@
         self.failureBlock(self);
     }
     [self clearCompletionBlock];
-    self.delegate = nil;
+
 }
 
 @end

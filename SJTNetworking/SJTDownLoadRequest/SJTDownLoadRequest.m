@@ -35,7 +35,7 @@
         }
         
     });
-    self.delegate = nil;
+    [self clearCompletionBlock];
 }
 
 -(void)clearCompletionBlock
