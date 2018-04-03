@@ -14,6 +14,17 @@
 #import "SJTCacheMetaData.h"
 @implementation SJTNetCache
 NSString *const SJTRequestCacheErrorDomain = @"com.sjt.request.cache";
+
+static dispatch_queue_t sjtrequest_cache_writing_queue() {
+    static dispatch_queue_t queue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dispatch_queue_attr_t attr = DISPATCH_QUEUE_SERIAL;
+        queue = dispatch_queue_create("com.sjtrequest.caching", attr);
+    });
+    
+    return queue;
+}
 +(instancetype)shareCache
 {
     static SJTNetCache * cache = nil;
@@ -45,7 +56,7 @@ NSString *const SJTRequestCacheErrorDomain = @"com.sjt.request.cache";
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error = nil;
     //2.读取meta缓存
-    NSString *fileMetaPath = [NSString stringWithFormat:@"%@.meta",filePath];
+    NSString *fileMetaPath = [self metaFilePathWithFilePath:filePath];
     if ([fileManager fileExistsAtPath:fileMetaPath isDirectory:nil]) {
         return [NSError errorWithDomain:SJTRequestCacheErrorDomain code:SJTRequestCacheErrorMisMetaData userInfo:@{ NSLocalizedDescriptionKey:@"metadata not exist"}];
         
@@ -108,8 +119,8 @@ NSString *const SJTRequestCacheErrorDomain = @"com.sjt.request.cache";
     }
     
     //6.如果有校验函数，进行校验,
-    if (request.responseValidate) {
-        if (request.responseValidate(request)) {
+    if (request.responseCanCache) {
+        if (request.responseCanCache(request)) {
             return [NSError errorWithDomain:SJTRequestCacheErrorDomain code:SJTRequestCacheErrorInvalidCacheData userInfo:@{ NSLocalizedDescriptionKey:@"cacheData invalidate"}];
         }
     }
@@ -118,10 +129,36 @@ NSString *const SJTRequestCacheErrorDomain = @"com.sjt.request.cache";
 
 - (void)saveToCacheWithRequest:(SJTRequest *)request
 {
+    dispatch_async(sjtrequest_cache_writing_queue(), ^{
+        
+        //1.根据request和config 获取缓存路径
+        NSString *filePath = [self filePathWithRequest:request];
+        //2.读取meta缓存
+        NSString *fileMetaPath = [self metaFilePathWithFilePath:filePath];
+        NSData * data = request.responseData;
+        if (data != nil) {
+            @try {
+                // New data will always overwrite old data.
+                [data writeToFile:filePath atomically:YES];
+                SJTCacheMetaData *metadata = [[SJTCacheMetaData alloc] init];
+                metadata.appVersionString = [SJTNetworkingConfig shareConfig].appVersion;
+                metadata.creationDate = [NSDate date];
+                metadata.invalidateTime = request.cacheInvalidateTime;
+                [NSKeyedArchiver archiveRootObject:metadata toFile:fileMetaPath];
+                
+            } @catch (NSException *exception) {
+                //打日志
+            }
+        }
+    });
     
 }
 
 
+-(NSString *)metaFilePathWithFilePath:(NSString *)filePath
+{
+    return [NSString stringWithFormat:@"%@.meta",filePath];
+}
 
 -(NSString *)filePathWithRequest:(SJTRequest *)request
 {

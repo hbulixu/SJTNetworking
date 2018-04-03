@@ -57,7 +57,8 @@
 
 @property (nonatomic, strong)NSURLRequest * customRequest;
 
-@property (nonatomic, copy)NSString * invalidateTime;
+/**报文失效时间单位是秒*/
+@property (nonatomic, copy)NSString * cacheInvalidateTime;
 
 -(void)start;
 
