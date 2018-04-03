@@ -30,18 +30,38 @@
            success:(SJTRequestSuccessBlock) success
            failure:(SJTRequestFailureBlock) failure
 {
+    return [SJTNetworkCenter GET:URLString parameters:parameters cachePolicy:SJTCachePolicyDontWriteToCache success:success failure:failure];
+}
+
++(SJTRequest *)POST:(NSString *)URLString
+         parameters:(id)parameters
+            success:(SJTRequestSuccessBlock) success
+            failure:(SJTRequestFailureBlock) failure
+{
+    return [SJTNetworkCenter POST:URLString parameters:parameters cachePolicy:SJTCachePolicyDontWriteToCache success:success failure:failure];
+}
+
+
++(SJTRequest *)GET:(NSString *)URLString
+        parameters:(NSDictionary *)parameters
+       cachePolicy:(SJTCachePolicy)cachePolicy
+           success:(SJTRequestSuccessBlock) success
+           failure:(SJTRequestFailureBlock) failure
+{
     SJTRequest * request =  [SJTRequest new];
     request.url = URLString;
     request.requestParams = parameters;
     request.successBlock =  success;
     request.failureBlock = failure;
     request.requestMethod = SJTRequestMethodGet;
+    request.cachePolicy = cachePolicy;
     [request start];
     return request;
 }
 
 +(SJTRequest *)POST:(NSString *)URLString
-         parameters:(id)parameters
+         parameters:(NSDictionary *)parameters
+        cachePolicy:(SJTCachePolicy)cachePolicy
             success:(SJTRequestSuccessBlock) success
             failure:(SJTRequestFailureBlock) failure
 {
@@ -51,9 +71,11 @@
     request.successBlock =  success;
     request.failureBlock = failure;
     request.requestMethod = SJTRequestMethodPost;
+    request.cachePolicy = cachePolicy;
     [request start];
     return request;
 }
+
 #pragma mark batchRequest
 
 +(SJTBatchRequest *)sendRequestArray:(NSArray <SJTRequest *>*)requestArray

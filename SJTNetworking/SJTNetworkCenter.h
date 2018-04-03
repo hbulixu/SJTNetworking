@@ -28,6 +28,18 @@
             failure:(SJTRequestFailureBlock) failure;
 
 
++(SJTRequest *)GET:(NSString *)URLString
+        parameters:(NSDictionary *)parameters
+       cachePolicy:(SJTCachePolicy)cachePolicy
+           success:(SJTRequestSuccessBlock) success
+           failure:(SJTRequestFailureBlock) failure;
+
++(SJTRequest *)POST:(NSString *)URLString
+         parameters:(NSDictionary *)parameters
+        cachePolicy:(SJTCachePolicy)cachePolicy
+            success:(SJTRequestSuccessBlock) success
+            failure:(SJTRequestFailureBlock) failure;
+
 //批量请求GET POST不明确，需要自定义request
 +(SJTBatchRequest *)sendRequestArray:(NSArray <SJTRequest *>*)requestArray
                              success:(SJTBatchRequestSuccessBlock) success
