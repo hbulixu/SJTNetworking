@@ -71,7 +71,7 @@
         [strongSelf completionHandler:tempRequest error:error];
         if (!error) {
 
-            switch (request.cachePolicy) {
+            switch (tempRequest.cachePolicy) {
                 case SJTCachePolicyDontWriteToCache:
                     break;
                 case SJTCachePolicyTalkServerAfterLoadCache:

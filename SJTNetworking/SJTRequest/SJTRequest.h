@@ -31,6 +31,8 @@
 
 @property (nonatomic, copy)SJTRequestFailureBlock failureBlock;
 
+@property (nonatomic, assign) SJTCachePolicy cachePolicy;
+
 +(instancetype)requestWithUrl:(NSString *)url requestMethod:(SJTRequestMethod)requestMethod requestParams:(NSDictionary *)requestParams;
 
 - (void)clearCompletionBlock;
