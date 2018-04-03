@@ -57,6 +57,7 @@
 
 @property (nonatomic, strong)NSURLRequest * customRequest;
 
+@property (nonatomic, copy)NSString * invalidateTime;
 
 -(void)start;
 

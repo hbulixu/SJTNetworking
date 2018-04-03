@@ -28,9 +28,12 @@
 
 -(instancetype)initWithDownloadRequestArray:(NSArray <SJTDownLoadRequest *>*)requestArray;
 
+
 - (void)start;
 //失败后再次发起请求，成功的请求会自动过滤
-- (void)reTry;
+- (void)retry;
+//使用block请求，需要设置成功，失败block，使用delegate则不需要
+- (void)retrySuccess:(SJTBatchDownloadRequestSuccessBlock) successBlock failure:(SJTBatchDownloadRequestFailureBlock)failureBlock;
 
 - (void)cancell;
 

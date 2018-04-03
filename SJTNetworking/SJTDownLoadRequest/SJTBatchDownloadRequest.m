@@ -33,6 +33,8 @@
     return self;
 }
 
+
+
 - (void)start
 {
     [[SJTBatchDownloadRequestEngine shareEngine] addBatchDownloadRequest:self];
@@ -42,8 +44,15 @@
     }
 }
 //失败后再次发起请求，成功的请求会自动过滤
-- (void)reTry
+- (void)retry
 {
+    [self retrySuccess:nil failure:nil];
+}
+
+-(void)retrySuccess:(SJTBatchDownloadRequestSuccessBlock)successBlock failure:(SJTBatchDownloadRequestFailureBlock)failureBlock
+{
+    self.successBlock = successBlock;
+    self.failureBlock = failureBlock;
     for (SJTDownLoadRequest * downloadRequest in _requestArray) {
         if (downloadRequest.error) {
             downloadRequest.delegate = self;

@@ -60,8 +60,15 @@
     });
 }
 
-- (void)reTry
+- (void)retry
 {
+    [self retrySuccess:nil failure:nil];
+}
+
+- (void)retrySuccess:(SJTBatchUploadRequestSuccessBlock) successBlock failure:(SJTBatchUploadRequestFailureBlock)failureBlock
+{
+    self.successBlock = successBlock;
+    self.failureBlock = failureBlock;
     for (SJTUploadRequest * uploadRequest in _requestArray) {
         if (uploadRequest.error) {
             uploadRequest.delegate = self;
