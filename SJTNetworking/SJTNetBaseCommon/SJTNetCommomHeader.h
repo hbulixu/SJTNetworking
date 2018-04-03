@@ -42,6 +42,17 @@ typedef NS_ENUM(NSInteger, SJTResponseSerializerType) {
     kSJTesponseSerializerXML    = 3
 };
 
+typedef NS_ENUM(NSInteger,  SJTCachePolicy)
+{
+    //不管怎么样都不写缓存
+    SJTCachePolicyDontWriteToCache = 0,
+    //如果有缓存那么先访问缓存（不管缓存是否已经过期，然后再去服务端请求新数据，请求失败后不再读缓存）
+    SJTCachePolicyTalkServerAfterLoadCache = 1,
+    //仅仅访问缓存，如果没有找到缓存，那么会回调cancel,这个缓存策略有内存泄漏问题，没有释放manager暂时不要使用
+    SJTCacheOnlyLoadCache = 2,
+    
+} ;
+
 
 typedef void(^SJTRequestSuccessBlock)( SJTRequest *request);
 typedef void(^SJTRequestFailureBlock)( SJTRequest *request, NSError * error);

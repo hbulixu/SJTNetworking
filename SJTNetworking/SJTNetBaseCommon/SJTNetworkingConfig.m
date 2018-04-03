@@ -31,7 +31,6 @@
     if (self) {
         _requestSerializerType = kSJTRequestSerializerHTTP;
         _responseSerializerType = kSJTesponseSerializerJSON;
-        _cachePath = @"需要自定义一个";
     }
     return self;
 }

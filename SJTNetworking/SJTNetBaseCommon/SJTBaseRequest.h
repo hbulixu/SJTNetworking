@@ -25,6 +25,7 @@
 
 @property (nonatomic, assign, readonly) BOOL isDataFromCache;
 
+@property (nonatomic, assign) SJTCachePolicy cachePolicy;
 /**
  为业务保留的接口，当校验不通过时会调用failure分支,返回error为是吧，nil为成功
  */

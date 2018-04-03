@@ -10,6 +10,7 @@
 #import "SJTRequest.h"
 #import <pthread/pthread.h>
 #import "SJTNetAdapter.h"
+#import "SJTNetCache.h"
 @implementation SJTRequestEngine
 {
     NSMutableDictionary<NSNumber *, SJTRequest *> *_requestStorer;
@@ -47,33 +48,40 @@
 -(void)startRequest:(SJTRequest *)request
 {
 
+    if (request.cachePolicy == SJTCachePolicyDontWriteToCache) {
+        //do nothing
+    }else if (request.cachePolicy == SJTCachePolicyTalkServerAfterLoadCache)
+    {
+        NSError * error =  [[SJTNetCache shareCache] loadCacheWithRequest:request];
+        [self completionHandler:request error:error];
+        
+    }else if(request.cachePolicy == SJTCacheOnlyLoadCache)
+    {
+        NSError * error =  [[SJTNetCache shareCache] loadCacheWithRequest:request];
+        [self completionHandler:request error:error];
+        return;
+    }
+    
+    
     __weak __typeof(self)weakSelf = self;
     [[SJTNetAdapter shareAdapter] dataTaskWith:request completionHandler:^(SJTBaseRequest *request, NSError *error) {
         
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         SJTRequest * tempRequest = (SJTRequest *)request;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if (error) {
+        [strongSelf completionHandler:tempRequest error:error];
+        if (!error) {
 
-                if (tempRequest.failureBlock) {
-                    tempRequest.failureBlock(tempRequest,error);
-                }
-                if ([tempRequest.delegate respondsToSelector:@selector(requestFailed:error:)]) {
-                    [tempRequest.delegate requestFailed:tempRequest error:error];
-                }
-            }else
-            {
-                if (tempRequest.successBlock) {
-                    tempRequest.successBlock(tempRequest);
-                }
-                if ([tempRequest.delegate respondsToSelector:@selector(requestSuccess:)]) {
-                    [tempRequest.delegate requestSuccess:tempRequest];
-                }
+            switch (request.cachePolicy) {
+                case SJTCachePolicyDontWriteToCache:
+                    break;
+                case SJTCachePolicyTalkServerAfterLoadCache:
+                case SJTCacheOnlyLoadCache:
+                    [[SJTNetCache shareCache]saveToCacheWithRequest:tempRequest];
+                    break;
+                default:
+                    break;
             }
-            
-        });
-
+        }
         [strongSelf removeRequestFromStorer:tempRequest];
         //防止循环引用
         [tempRequest clearCompletionBlock];
@@ -81,6 +89,31 @@
     
     [self addRequestToStorer:request];
 
+}
+
+-(void)completionHandler:(SJTRequest *)request error:(NSError *)error
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if (error) {
+            
+            if (request.failureBlock) {
+                request.failureBlock(request,error);
+            }
+            if ([request.delegate respondsToSelector:@selector(requestFailed:error:)]) {
+                [request.delegate requestFailed:request error:error];
+            }
+        }else
+        {
+            if (request.successBlock) {
+                request.successBlock(request);
+            }
+            if ([request.delegate respondsToSelector:@selector(requestSuccess:)]) {
+                [request.delegate requestSuccess:request];
+            }
+        }
+        
+    });
 }
 
 

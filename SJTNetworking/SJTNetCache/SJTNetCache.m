@@ -129,6 +129,13 @@ static dispatch_queue_t sjtrequest_cache_writing_queue() {
 
 - (void)saveToCacheWithRequest:(SJTRequest *)request
 {
+    //如果不符合缓存规则，则不能缓存
+    if (request.responseCanCache) {
+        
+        if (!request.responseCanCache(request)) {
+            return;
+        }
+    }
     dispatch_async(sjtrequest_cache_writing_queue(), ^{
         
         //1.根据request和config 获取缓存路径

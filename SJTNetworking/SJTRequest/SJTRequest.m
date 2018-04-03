@@ -8,7 +8,7 @@
 
 #import "SJTRequest.h"
 #import "SJTRequestEngine.h"
-
+#import "SJTNetCache.h"
 @implementation SJTRequest
 
 +(instancetype)requestWithUrl:(NSString *)url requestMethod:(SJTRequestMethod)requestMethod requestParams:(NSDictionary *)requestParams
@@ -30,7 +30,7 @@
         }
         
     });
-    
+
     [[SJTRequestEngine shareEngine] startRequest:self];
 }
 
