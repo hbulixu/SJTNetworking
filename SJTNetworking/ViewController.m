@@ -47,13 +47,13 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [SJTNetworkCenter GET:@"http://img-blog.csdn.net/20170527112511098?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveWlyYWw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" parameters:nil filePath:nil process:^(NSProgress *progress) {
-        
-    } success:^(SJTDownLoadRequest *request) {
-        NSLog(@"%@",request.downLoadPath);
-    } failure:^(SJTDownLoadRequest *request, NSError *error) {
-        
-    }];
+//    [SJTNetworkCenter GET:@"http://img-blog.csdn.net/20170527112511098?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveWlyYWw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" parameters:nil filePath:nil process:^(NSProgress *progress) {
+//        
+//    } success:^(SJTDownLoadRequest *request) {
+//        NSLog(@"%@",request.downLoadPath);
+//    } failure:^(SJTDownLoadRequest *request, NSError *error) {
+//        
+//    }];
     
     
     
