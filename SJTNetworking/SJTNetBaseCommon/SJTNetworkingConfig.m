@@ -7,7 +7,7 @@
 //
 
 #import "SJTNetworkingConfig.h"
-
+#import "SJTNetworkingTools.h"
 @implementation SJTNetworkingConfig
 
 +(instancetype)shareConfig
@@ -31,6 +31,10 @@
     if (self) {
         _requestSerializerType = kSJTRequestSerializerHTTP;
         _responseSerializerType = kSJTesponseSerializerJSON;
+
+        _fileDownLoadPath = [SJTNetworkingTools makeDiskCachePath:@"SJTNetworkDownLoadDefault" ];
+        [SJTNetworkingTools createDirectoryIfNeeded:_fileDownLoadPath];
+        
     }
     return self;
 }

@@ -46,4 +46,9 @@
     self.failureBlock = nil;
     self.processBlock = nil;
 }
+
+-(void)dealloc
+{
+    
+}
 @end

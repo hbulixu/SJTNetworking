@@ -7,7 +7,7 @@
 //
 
 #import "SJTNetCache.h"
-#import <CommonCrypto/CommonDigest.h>
+#import "SJTNetworkingTools.h"
 #import "SJTNetworkingConfig.h"
 #import "SJTRequest.h"
 #import "SJTRequstPrivate.h"
@@ -174,7 +174,7 @@ static dispatch_queue_t sjtrequest_cache_writing_queue() {
     id argument = request.requestParams;
     NSString *requestInfo = [NSString stringWithFormat:@"Method:%ld Host:%@ Url:%@ Argument:%@",
                              (long)request.requestMethod, baseUrl, requestUrl, argument];
-    NSString *cacheFileName = [SJTNetCache md5StringFromString:requestInfo];
+    NSString *cacheFileName = [SJTNetworkingTools md5StringFromString:requestInfo];
     NSString *path = [self cacheBasePath];
     path = [path stringByAppendingPathComponent:cacheFileName];
     return path;
@@ -186,53 +186,13 @@ static dispatch_queue_t sjtrequest_cache_writing_queue() {
     if ([SJTNetworkingConfig shareConfig].cacheSpaceName.length) {
         namespace = [SJTNetworkingConfig shareConfig].cacheSpaceName;
     }
-    NSString * fullPathName = [self makeDiskCachePath:namespace];
-    [self createDirectoryIfNeeded:fullPathName];
+    NSString * fullPathName = [SJTNetworkingTools makeDiskCachePath:namespace];
+    [SJTNetworkingTools createDirectoryIfNeeded:fullPathName];
     return fullPathName;
 }
 
--(NSString *)makeDiskCachePath:(NSString*)fullNamespace{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    return [paths[0] stringByAppendingPathComponent:fullNamespace];
-}
 
 
-- (void)createDirectoryIfNeeded:(NSString *)path {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL isDir;
-    if (![fileManager fileExistsAtPath:path isDirectory:&isDir]) {
-        [self createBaseDirectoryAtPath:path];
-    } else {
-        if (!isDir) {
-            NSError *error = nil;
-            [fileManager removeItemAtPath:path error:&error];
-            [self createBaseDirectoryAtPath:path];
-        }
-    }
-}
 
-- (void)createBaseDirectoryAtPath:(NSString *)path {
-    NSError *error = nil;
-    [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES
-                                               attributes:nil error:&error];
-    if (error) {
-        //日志
-    }
-}
 
-+ (NSString *)md5StringFromString:(NSString *)string {
-    NSParameterAssert(string != nil && [string length] > 0);
-    
-    const char *value = [string UTF8String];
-    
-    unsigned char outputBuffer[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(value, (CC_LONG)strlen(value), outputBuffer);
-    
-    NSMutableString *outputString = [[NSMutableString alloc] initWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
-    for(NSInteger count = 0; count < CC_MD5_DIGEST_LENGTH; count++){
-        [outputString appendFormat:@"%02x", outputBuffer[count]];
-    }
-    
-    return outputString;
-}
 @end

@@ -13,6 +13,7 @@
 #import "AFNetworking.h"
 #import "SJTNetworkingConfig.h"
 #import "SJTDownLoadRequest.h"
+#import "SJTNetworkingTools.h"
 @interface SJTNetAdapter()
 
 @property (nonatomic,strong)AFJSONResponseSerializer * jsonResponseSerializer;
@@ -246,26 +247,32 @@
         }
     }
     
+    //如果没有赋值下载路径，使用默认下载路径
+    if (!downLoadRequest.downLoadPath) {
+        downLoadRequest.downLoadPath = [SJTNetworkingConfig shareConfig].fileDownLoadPath;
+    }
     NSURL *downloadFileSavePath;
     BOOL isDirectory;
     if(![[NSFileManager defaultManager] fileExistsAtPath:downLoadRequest.downLoadPath isDirectory:&isDirectory]) {
         isDirectory = NO;
     }
     if (isDirectory) {
-        NSString *fileName = [urlRequest.URL lastPathComponent];
+        NSString *fileName = [SJTNetworkingTools md5StringFromString: urlRequest.URL.absoluteString ];
         downloadFileSavePath = [NSURL fileURLWithPath:[NSString pathWithComponents:@[downLoadRequest.downLoadPath, fileName]] isDirectory:NO];
     } else {
         downloadFileSavePath = [NSURL fileURLWithPath:downLoadRequest.downLoadPath isDirectory:NO];
     }
 
     
-    [_manager downloadTaskWithRequest:urlRequest progress:processBlock destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+   NSURLSessionDownloadTask * downloadTask = [_manager downloadTaskWithRequest:urlRequest progress:processBlock destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        NSLog(@"%@",targetPath);
         return downloadFileSavePath;
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
         downLoadRequest.response = response;
         completionHandler(downLoadRequest,error);
 
     }];
+    [downloadTask resume];
     return nil;
 }
 

@@ -15,6 +15,9 @@
 /**最好根据用户隔离*/
 @property (nonatomic,copy)NSString * cacheSpaceName;
 
+/**下载路径*/
+@property (nonatomic,copy)NSString * fileDownLoadPath;
+
 /**如果设置了appVerion，读取缓存数据时，缓存报文的metaData中的appVersionString与appVerion不用时，缓存不会加载*/
 @property (nonatomic,copy)NSString * appVersion;
 

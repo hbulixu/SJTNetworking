@@ -67,6 +67,7 @@
 
 - (void)retrySuccess:(SJTBatchUploadRequestSuccessBlock) successBlock failure:(SJTBatchUploadRequestFailureBlock)failureBlock
 {
+    [[SJTBatchUploadRequestEngine shareEngine] addBatchUploadRequest:self];
     self.successBlock = successBlock;
     self.failureBlock = failureBlock;
     for (SJTUploadRequest * uploadRequest in _requestArray) {
@@ -103,6 +104,7 @@
             self.successBlock(self);
         }
         [self clearCompletionBlock];
+        [[SJTBatchUploadRequestEngine shareEngine]removeBatchUploadRequest:self];
   
     }
 }
@@ -121,6 +123,7 @@
             self.failureBlock(self,error);
         }
         [self clearCompletionBlock];
+        [[SJTBatchUploadRequestEngine shareEngine]removeBatchUploadRequest:self];
     }
 }
 @end
