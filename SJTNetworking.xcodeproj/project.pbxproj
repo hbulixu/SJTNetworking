@@ -384,6 +384,7 @@
 				TargetAttributes = {
 					37C3D3DF2047DD8500785567 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = ESFF265BU6;
 						ProvisioningStyle = Automatic;
 					};
 					37C3D3F82047DD8500785567 = {
@@ -628,6 +629,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ESFF265BU6;
 				INFOPLIST_FILE = SJTNetworking/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LX.com.cn.SJTNetworking;
@@ -639,6 +641,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ESFF265BU6;
 				INFOPLIST_FILE = SJTNetworking/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LX.com.cn.SJTNetworking;

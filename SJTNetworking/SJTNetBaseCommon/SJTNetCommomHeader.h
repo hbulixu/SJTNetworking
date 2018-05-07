@@ -58,7 +58,7 @@ typedef void(^SJTRequestSuccessBlock)( SJTRequest *request);
 typedef void(^SJTRequestFailureBlock)( SJTRequest *request, NSError * error);
 
 typedef void(^SJTBatchRequestSuccessBlock)( SJTBatchRequest *request);
-typedef void(^SJTBatchRequestFailureBlock)( SJTBatchRequest *request);
+typedef void(^SJTBatchRequestFailureBlock)( SJTBatchRequest *request,NSError * error);
 
 typedef void(^SJTUploadRequestSuccessBlock)( SJTUploadRequest *request);
 typedef void(^SJTUploadRequestFailureBlock)( SJTUploadRequest *request, NSError * error);

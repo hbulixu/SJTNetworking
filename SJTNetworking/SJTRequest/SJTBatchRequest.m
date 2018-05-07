@@ -97,7 +97,7 @@
     }
     
     if (self.failureBlock) {
-        self.failureBlock(self);
+        self.failureBlock(self,error);
     }
     [self clearCompletionBlock];
 

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "SJTNetworkCenter.h"
 @interface ViewController ()
 
 @end
@@ -16,6 +17,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    [SJTNetworkCenter GET:@"http://rapapi.org/mockjsdata/30918/http//advbanner.com" parameters:nil success:^(SJTRequest *request) {
+        NSLog(@"%@",request.responseJSONObject);
+        
+    } failure:^(SJTRequest *request, NSError *error) {
+        NSLog(@"%ld",error.code);
+    }];
+    
+    NSMutableArray * requestArray = [NSMutableArray arrayWithCapacity:0];
+    for (int i =0 ; i < 10; i ++) {
+        SJTRequest * request = [SJTRequest requestWithUrl:@"http://rapapi.org/mockjsdata/30918/http//advbanner.com" requestMethod:SJTRequestMethodGet requestParams:nil];
+        [requestArray addObject:request];
+    }
+    
+    [SJTNetworkCenter sendRequestArray:requestArray success:^(SJTBatchRequest *request) {
+        for (SJTRequest *baseRequest in request.requestArray) {
+            NSLog(@"%@",baseRequest.responseJSONObject);
+            NSLog(@"%@",baseRequest);
+        }
+    } failure:^(SJTBatchRequest *request, NSError *error) {
+        
+    }];
 }
 
 
