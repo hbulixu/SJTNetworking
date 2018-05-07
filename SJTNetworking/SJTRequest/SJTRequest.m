@@ -53,4 +53,9 @@
     self.successBlock = nil;
     self.failureBlock = nil;
 }
+
+-(void)dealloc
+{
+    NSLog(@"%@ dealloc",self);
+}
 @end

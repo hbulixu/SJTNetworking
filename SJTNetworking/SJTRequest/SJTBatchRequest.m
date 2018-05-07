@@ -83,6 +83,7 @@
             self.successBlock(self);
         }
         [self clearCompletionBlock];
+        [[SJTBatchRequestEngine shareEngine]removeBatchRequest:self];
 
     }
 }
@@ -100,7 +101,13 @@
         self.failureBlock(self,error);
     }
     [self clearCompletionBlock];
+    [[SJTBatchRequestEngine shareEngine]removeBatchRequest:self];
 
+}
+
+-(void)dealloc
+{
+    
 }
 
 @end
