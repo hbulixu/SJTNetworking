@@ -17,4 +17,7 @@
 +(NSString *)makeDiskCachePath:(NSString*)fullNamespace;
 
 + (NSString *)md5StringFromString:(NSString *)string;
+
+//json 校验
++ (BOOL)validateJSON:(id)json withValidator:(id)jsonValidator ;
 @end

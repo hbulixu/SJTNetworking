@@ -280,7 +280,6 @@
 {
     NSError * __autoreleasing serializationError = nil;
     NSError *requestError = nil;
-    NSError *responseValidateError = nil;
     request.response = response;
     
     BOOL success = YES;
@@ -316,20 +315,7 @@
         
     }
     
-    //业务校验接口
-    if(success)
-    {
-        if (request.responseValidate) {
-            responseValidateError = request.responseValidate(request);
-        }
-        if (responseValidateError) {
-            success = NO;
-            requestError = responseValidateError;
-        }
-    }
-
     completionHandler(request,requestError);
-
 }
 
 -(void )processRequestWithConfig:(SJTBaseRequest *)request

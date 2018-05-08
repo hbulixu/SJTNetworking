@@ -11,6 +11,8 @@
 #import <pthread/pthread.h>
 #import "SJTNetAdapter.h"
 #import "SJTNetCache.h"
+#import "SJTNetworkingConfig.h"
+#import "SJTNetworkingTools.h"
 @implementation SJTRequestEngine
 {
     NSMutableDictionary<NSNumber *, SJTRequest *> *_requestStorer;
@@ -48,6 +50,15 @@
 -(void)startRequest:(SJTRequest *)request
 {
 
+    
+    if (!request.responseCanCache) {
+        request.responseCanCache = [SJTNetworkingConfig shareConfig].responseCanCache;
+    }
+    
+    if (!request.responseValidate) {
+        request.responseValidate = [SJTNetworkingConfig shareConfig].responseValidate;
+    }
+    
     if (request.cachePolicy == SJTCachePolicyDontWriteToCache) {
         //do nothing
     }else if (request.cachePolicy == SJTCachePolicyTalkServerAfterLoadCache)
@@ -62,7 +73,7 @@
         return;
     }
     
-    
+
     __weak __typeof(self)weakSelf = self;
     [[SJTNetAdapter shareAdapter] dataTaskWith:request completionHandler:^(SJTBaseRequest *request, NSError *error) {
         
@@ -93,9 +104,29 @@
 
 -(void)completionHandler:(SJTRequest *)request error:(NSError *)error
 {
+    
+
+    if(!error)
+    {
+        //json 校验
+        if (request.validatorJson && request.responseJSONObject) {
+            if (![SJTNetworkingTools validateJSON:request.responseJSONObject withValidator:request.validatorJson])
+            {
+                error = [NSError errorWithDomain:@"SJTJsonValidate" code:-1 userInfo:@{NSLocalizedDescriptionKey:@"json校验失败"}];
+            }
+            
+        }
+        //业务校验接口
+        if (!error && request.responseValidate) {
+            error = request.responseValidate(request);
+        }
+        
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        if (error) {
+        //从缓存读取错误的信息不调用错误回调
+        if (error && !request.isDataFromCache) {
             
             if (request.failureBlock) {
                 request.failureBlock(request,error);

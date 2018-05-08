@@ -33,6 +33,8 @@
 
 @property (nonatomic, assign) SJTCachePolicy cachePolicy;
 
+@property (nonatomic,retain)NSDictionary * validatorJson;
+
 +(instancetype)requestWithUrl:(NSString *)url requestMethod:(SJTRequestMethod)requestMethod requestParams:(NSDictionary *)requestParams;
 
 - (void)clearCompletionBlock;
