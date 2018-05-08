@@ -8,6 +8,7 @@
 
 #import "SJTNetworkingConfig.h"
 #import "SJTNetworkingTools.h"
+#import "SJTBaseRequest.h"
 @implementation SJTNetworkingConfig
 
 +(instancetype)shareConfig
@@ -37,5 +38,18 @@
         
     }
     return self;
+}
+
+-(void )processRequestWithConfig:(SJTBaseRequest *)request
+{
+    if (!request.requestSerializerType) {
+        request.requestSerializerType = self.requestSerializerType;
+    }
+    if (!request.responseSerializerType) {
+        request.responseSerializerType = self.responseSerializerType;
+    }
+    if (!request.requestHeaderFieldValueDictionary) {
+        request.requestHeaderFieldValueDictionary = self.requestHeaderFieldValueDictionary;
+    }
 }
 @end

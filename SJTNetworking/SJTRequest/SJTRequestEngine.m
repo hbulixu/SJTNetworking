@@ -50,6 +50,8 @@
 -(void)startRequest:(SJTRequest *)request
 {
 
+
+    [[SJTNetworkingConfig shareConfig] processRequestWithConfig:request];
     
     if (!request.responseCanCache) {
         request.responseCanCache = [SJTNetworkingConfig shareConfig].responseCanCache;
@@ -93,9 +95,13 @@
                     break;
             }
         }
-        [strongSelf removeRequestFromStorer:tempRequest];
-        //防止循环引用
-        [tempRequest clearCompletionBlock];
+
+        //主线程删除，防止提前释放造成crash
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [strongSelf removeRequestFromStorer:tempRequest];
+            //防止循环引用
+            [tempRequest clearCompletionBlock];
+        });
     }];
     
     [self addRequestToStorer:request];
@@ -126,14 +132,17 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         //从缓存读取错误的信息不调用错误回调
-        if (error && !request.isDataFromCache) {
+        if (error ) {
             
-            if (request.failureBlock) {
-                request.failureBlock(request,error);
+            if (!request.isDataFromCache) {
+                if (request.failureBlock) {
+                    request.failureBlock(request,error);
+                }
+                if ([request.delegate respondsToSelector:@selector(requestFailed:error:)]) {
+                    [request.delegate requestFailed:request error:error];
+                }
             }
-            if ([request.delegate respondsToSelector:@selector(requestFailed:error:)]) {
-                [request.delegate requestFailed:request error:error];
-            }
+
         }else
         {
             if (request.successBlock) {

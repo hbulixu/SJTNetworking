@@ -42,4 +42,6 @@
 @property (nonatomic,copy)SJTResponseCanCache responseCanCache;
 
 +(instancetype)shareConfig;
+
+-(void )processRequestWithConfig:(SJTBaseRequest *)request;
 @end

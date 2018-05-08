@@ -57,7 +57,7 @@ static dispatch_queue_t sjtrequest_cache_writing_queue() {
     NSError *error = nil;
     //2.读取meta缓存
     NSString *fileMetaPath = [self metaFilePathWithFilePath:filePath];
-    if ([fileManager fileExistsAtPath:fileMetaPath isDirectory:nil]) {
+    if (![fileManager fileExistsAtPath:fileMetaPath isDirectory:nil]) {
         return [NSError errorWithDomain:SJTRequestCacheErrorDomain code:SJTRequestCacheErrorMisMetaData userInfo:@{ NSLocalizedDescriptionKey:@"metadata not exist"}];
         
     }
@@ -91,7 +91,7 @@ static dispatch_queue_t sjtrequest_cache_writing_queue() {
     }
     
     //5.读取缓存数据
-    if ([fileManager fileExistsAtPath:filePath isDirectory:nil]) {
+    if (![fileManager fileExistsAtPath:filePath isDirectory:nil]) {
         return [NSError errorWithDomain:SJTRequestCacheErrorDomain code:SJTRequestCacheErrorMisCacheData userInfo:@{ NSLocalizedDescriptionKey:@"cacheData not exist"}];
     }
     NSData *fileData = [NSData dataWithContentsOfFile:filePath];

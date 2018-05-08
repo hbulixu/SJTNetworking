@@ -40,9 +40,9 @@
         if ([self.delegate respondsToSelector:@selector(uploadRequestCanceled:)]) {
             [self.delegate uploadRequestCanceled:self];
         }
-        
+        [self clearCompletionBlock];
     });
-    [self clearCompletionBlock];
+ 
 }
 
 

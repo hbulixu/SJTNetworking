@@ -9,6 +9,7 @@
 #import "SJTDownLoadRequestEngine.h"
 #import "SJTDownLoadRequest.h"
 #import "SJTNetAdapter.h"
+#import "SJTNetworkingConfig.h"
 
 @implementation SJTDownLoadRequestEngine
 {
@@ -45,6 +46,8 @@
 
 -(void)startDownLoadRequest:(SJTDownLoadRequest *)downloadRequest
 {
+    
+    [[SJTNetworkingConfig shareConfig] processRequestWithConfig:downloadRequest];
     __weak __typeof(self)weakSelf = self;
     [[SJTNetAdapter shareAdapter] downloadDataTaskWith:downloadRequest processBlock:^(NSProgress *progress) {
         

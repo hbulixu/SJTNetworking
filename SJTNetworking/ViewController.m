@@ -55,7 +55,11 @@
 //        
 //    }];
     
-    
+    [SJTNetworkCenter GET:@"http://rapapi.org/mockjsdata/30918/http//advbanner.com" parameters:nil cachePolicy:SJTCachePolicyTalkServerAfterLoadCache success:^(SJTRequest *request) {
+        NSLog(@"%@",request.responseJSONObject);
+    } failure:^(SJTRequest *request, NSError *error) {
+        
+    }];
     
 }
 - (void)didReceiveMemoryWarning {

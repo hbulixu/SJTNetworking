@@ -35,9 +35,9 @@
         if ([self.delegate respondsToSelector:@selector(downLoadRequestCanceled:)]) {
             [self.delegate downLoadRequestCanceled:self];
         }
-        
+        [self clearCompletionBlock];
     });
-    [self clearCompletionBlock];
+
 }
 
 -(void)clearCompletionBlock

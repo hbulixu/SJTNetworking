@@ -68,8 +68,7 @@
         
     }else
     {
-        [self processRequestWithConfig:request];
-        
+
         SJTRequestMethod method = request.requestMethod;
         NSString * url = request.url;
         NSDictionary * params = request.requestParams;
@@ -139,7 +138,6 @@
         
     }else
     {
-        [self processRequestWithConfig:uploadRequest];
         AFHTTPRequestSerializer *requestSerializer = [self requestSerializerForRequest:uploadRequest];
         
          __block NSError *  requestSerializationError = nil;
@@ -215,7 +213,7 @@
         urlRequest = [downLoadRequest.customRequest mutableCopy];
     }else
     {
-        [self processRequestWithConfig:downLoadRequest];
+        
         SJTRequestMethod method = downLoadRequest.requestMethod;
         NSString * url = downLoadRequest.url;
         NSDictionary * params = downLoadRequest.requestParams;
@@ -318,18 +316,7 @@
     completionHandler(request,requestError);
 }
 
--(void )processRequestWithConfig:(SJTBaseRequest *)request
-{
-    if (!request.requestSerializerType) {
-        request.requestSerializerType = [SJTNetworkingConfig shareConfig].requestSerializerType;
-    }
-    if (!request.responseSerializerType) {
-        request.responseSerializerType = [SJTNetworkingConfig shareConfig].responseSerializerType;
-    }
-    if (!request.requestHeaderFieldValueDictionary) {
-        request.requestHeaderFieldValueDictionary = [SJTNetworkingConfig shareConfig].requestHeaderFieldValueDictionary;
-    }
-}
+
 
 
 - (AFHTTPRequestSerializer *)requestSerializerForRequest:(SJTBaseRequest *)request {
