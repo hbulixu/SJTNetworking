@@ -9,6 +9,7 @@
 #import "SJTUploadRequestEngine.h"
 #import "SJTUploadRequest.h"
 #import "SJTNetAdapter.h"
+#import "SJTRequstPrivate.h"
 @implementation SJTUploadRequestEngine
 {
     NSMutableDictionary<NSNumber *, SJTUploadRequest *> *_requestStorer;

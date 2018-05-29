@@ -55,7 +55,22 @@
 //        
 //    }];
     
-    [SJTNetworkCenter GET:@"http://rapapi.org/mockjsdata/30918/http//advbanner.com" parameters:nil cachePolicy:SJTCachePolicyTalkServerAfterLoadCache success:^(SJTRequest *request) {
+//    [SJTNetworkCenter GET:@"http://rapapi.org/mockjsdata/30918/http//advbanner.com" parameters:nil cachePolicy:SJTCachePolicyTalkServerAfterLoadCache success:^(SJTRequest *request) {
+//        NSLog(@"%@",request.responseJSONObject);
+//    } failure:^(SJTRequest *request, NSError *error) {
+//
+//    }];
+    NSDictionary * dic = @{@"refer":@"http://localhost:8088/consultPhone",
+                           @"clientId":@"2",
+                           @"platform":@"baidu",
+                           @"ip":@"127.0.0.1",
+                           @"id58":@"c5/nn1sHiD9Nf5dHLukfAg==",
+                           @"source":@"1",
+                           @"channel":@"7",
+                           @"cityId":@"1",
+                           @"terminal":@"m"
+                           };
+    [SJTNetworkCenter GET:@"http://localhost:8088/consultPhone/Verify" parameters:dic success:^(SJTRequest *request) {
         NSLog(@"%@",request.responseJSONObject);
     } failure:^(SJTRequest *request, NSError *error) {
         

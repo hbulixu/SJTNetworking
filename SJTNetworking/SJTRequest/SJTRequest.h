@@ -37,5 +37,4 @@
 
 +(instancetype)requestWithUrl:(NSString *)url requestMethod:(SJTRequestMethod)requestMethod requestParams:(NSDictionary *)requestParams;
 
-- (void)clearCompletionBlock;
 @end

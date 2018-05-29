@@ -34,5 +34,4 @@
 @property (nonatomic, copy)SJTDownloadRequestSuccessBlock successBlock;
 @property (nonatomic, copy)SJTDownloadRequestFailureBlock failureBlock;
 
--(void)clearCompletionBlock;
 @end

@@ -24,5 +24,5 @@
 
 @property (nonatomic, strong, readwrite) id responseData;
 
-
+-(void)clearCompletionBlock;
 @end

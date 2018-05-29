@@ -13,6 +13,7 @@
 #import "SJTNetCache.h"
 #import "SJTNetworkingConfig.h"
 #import "SJTNetworkingTools.h"
+#import "SJTRequstPrivate.h"
 @implementation SJTRequestEngine
 {
     NSMutableDictionary<NSNumber *, SJTRequest *> *_requestStorer;

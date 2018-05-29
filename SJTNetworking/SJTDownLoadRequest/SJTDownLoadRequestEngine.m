@@ -10,6 +10,7 @@
 #import "SJTDownLoadRequest.h"
 #import "SJTNetAdapter.h"
 #import "SJTNetworkingConfig.h"
+#import "SJTRequstPrivate.h"
 
 @implementation SJTDownLoadRequestEngine
 {

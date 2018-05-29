@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "SJTNetworkingConfig.h"
+#import "SJTRequest.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +18,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [SJTNetworkingConfig shareConfig].responseValidate = ^NSError *(SJTBaseRequest *request) {
+        NSDictionary * dic = request.responseJSONObject;
+        NSInteger code = [NSString stringWithFormat:@"%@",[dic objectForKey:@"code"]].integerValue;
+        if (code != 0) {
+            return [NSError errorWithDomain:@"Error" code:code userInfo:@{NSLocalizedDescriptionKey:[dic objectForKey:@"msg"]}];
+        }
+        return nil;
+    };
     return YES;
 }
 

@@ -37,7 +37,6 @@
 @property (nonatomic, copy)SJTUploadRequestFailureBlock failureBlock;
 
 
--(void)clearCompletionBlock;
 @end
 
 @interface SJTFormData : NSObject
