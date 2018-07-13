@@ -51,6 +51,7 @@
         _manager = [AFHTTPSessionManager manager];
         _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         _manager.completionQueue = _processingQueue;
+        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"image/jpeg",@"text/plain" ,nil];
     }
     return self;
 }
@@ -343,6 +344,7 @@
 - (AFJSONResponseSerializer *)jsonResponseSerializer {
     if (!_jsonResponseSerializer) {
         _jsonResponseSerializer = [AFJSONResponseSerializer serializer];
+        _jsonResponseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"image/jpeg",@"text/plain" ,nil];
         
     }
     return _jsonResponseSerializer;
@@ -351,6 +353,8 @@
 - (AFXMLParserResponseSerializer *)xmlParserResponseSerialzier {
     if (!_xmlParserResponseSerialzier) {
         _xmlParserResponseSerialzier = [AFXMLParserResponseSerializer serializer];
+        
+        _xmlParserResponseSerialzier.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"image/jpeg",@"text/plain" ,nil];
     }
     return _xmlParserResponseSerialzier;
 }

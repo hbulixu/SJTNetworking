@@ -9,10 +9,7 @@
 #import "SJTNetworkCenter.h"
 #import "SJTUploadRequest.h"
 #import "SJTRequest.h"
-#import "SJTBatchRequest.h"
-#import "SJTBatchUploadRequest.h"
 #import "SJTDownLoadRequest.h"
-#import "SJTBatchDownloadRequest.h"
 @implementation SJTNetworkCenter
 
 +(SJTRequest *)sendRequest:(SJTRequest *) request

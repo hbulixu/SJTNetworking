@@ -38,3 +38,33 @@
 +(instancetype)requestWithUrl:(NSString *)url requestMethod:(SJTRequestMethod)requestMethod requestParams:(NSDictionary *)requestParams;
 
 @end
+
+@protocol SJTBatchRequestDelegate <NSObject>
+
+- (void)batchRequestSuccess:(SJTBatchRequest *)batchRequest;
+
+- (void)batchRequestFailure:(SJTBatchRequest *)batchRequest;
+
+- (void)batchRequestCancelled:(SJTBatchRequest *)batchRequest;
+
+@end
+
+@interface SJTBatchRequest : NSObject
+
+@property (nonatomic, copy) SJTBatchRequestSuccessBlock  successBlock;
+
+@property (nonatomic, copy) SJTBatchRequestFailureBlock failureBlock;
+
+@property (nonatomic, strong, readonly) NSArray<SJTRequest *> *requestArray;
+
+@property (nonatomic,weak) id <SJTBatchRequestDelegate> delegate;
+
+@property (nonatomic,strong) SJTRequest * firstErrorRequest;
+
+-(instancetype)initWithRequestArray:(NSArray <SJTRequest *>*)requestArray;
+
+- (void)start;
+
+- (void)cancell;
+
+@end

@@ -11,9 +11,6 @@
 #import "SJTRequest.h"
 #import "SJTUploadRequest.h"
 #import "SJTDownLoadRequest.h"
-#import "SJTBatchRequest.h"
-#import "SJTBatchUploadRequest.h"
-#import "SJTBatchDownloadRequest.h"
 @interface SJTNetworkCenter : NSObject
 
 //自定义request

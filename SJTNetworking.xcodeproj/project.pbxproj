@@ -7,26 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		37388F5F206A1C5A00B0C3F4 /* SJTBatchUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 37388F5E206A1C5A00B0C3F4 /* SJTBatchUploadRequest.m */; };
-		37388F62206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 37388F61206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.m */; };
+		3731718E20F846EC009CB321 /* btg_icon_priority_0_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3731718D20F846EC009CB321 /* btg_icon_priority_0_selected@2x.png */; };
 		37388F66206B31E200B0C3F4 /* SJTDownLoadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 37388F65206B31E200B0C3F4 /* SJTDownLoadRequest.m */; };
-		37388F75206C8B5500B0C3F4 /* SJTDownLoadRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 37388F74206C8B5400B0C3F4 /* SJTDownLoadRequestEngine.m */; };
 		377EA4BD204E78D300AA7D8B /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4B1204E78D300AA7D8B /* AFHTTPSessionManager.m */; };
 		377EA4BE204E78D300AA7D8B /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4B4204E78D300AA7D8B /* AFNetworkReachabilityManager.m */; };
 		377EA4BF204E78D300AA7D8B /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4B6204E78D300AA7D8B /* AFSecurityPolicy.m */; };
 		377EA4C0204E78D300AA7D8B /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4B8204E78D300AA7D8B /* AFURLRequestSerialization.m */; };
 		377EA4C1204E78D300AA7D8B /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4BA204E78D300AA7D8B /* AFURLResponseSerialization.m */; };
 		377EA4C2204E78D300AA7D8B /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4BC204E78D300AA7D8B /* AFURLSessionManager.m */; };
-		377EA4C52057741900AA7D8B /* SJTRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4C42057741900AA7D8B /* SJTRequestEngine.m */; };
 		377EA4C82057750C00AA7D8B /* SJTNetAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4C72057750C00AA7D8B /* SJTNetAdapter.m */; };
 		377EA4CB20577D2D00AA7D8B /* SJTBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4CA20577D2D00AA7D8B /* SJTBaseRequest.m */; };
 		377EA4CE2057BFF300AA7D8B /* SJTUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4CD2057BFF300AA7D8B /* SJTUploadRequest.m */; };
 		377EA4D12057F35900AA7D8B /* SJTRequstPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EA4D02057F35900AA7D8B /* SJTRequstPrivate.m */; };
 		37A4752620A061BA00CF1091 /* SJTNetworkingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A4752520A061BA00CF1091 /* SJTNetworkingTools.m */; };
 		37BB528420639CD0002FD64A /* SJTNetworkCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BB528320639CD0002FD64A /* SJTNetworkCenter.m */; };
-		37BB52882063D1C7002FD64A /* SJTBatchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BB52872063D1C7002FD64A /* SJTBatchRequest.m */; };
-		37BB528B2063D1EC002FD64A /* SJTBatchRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BB528A2063D1EC002FD64A /* SJTBatchRequestEngine.m */; };
-		37BB52912068A033002FD64A /* SJTUploadRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BB52902068A033002FD64A /* SJTUploadRequestEngine.m */; };
 		37C3D3E52047DD8500785567 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3D3E42047DD8500785567 /* main.m */; };
 		37C3D3E82047DD8500785567 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3D3E72047DD8500785567 /* AppDelegate.m */; };
 		37C3D3EB2047DD8500785567 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3D3EA2047DD8500785567 /* ViewController.m */; };
@@ -37,8 +31,6 @@
 		37C3D4092047DD8500785567 /* SJTNetworkingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3D4082047DD8500785567 /* SJTNetworkingUITests.m */; };
 		37C3D4182047DDD700785567 /* SJTNetworkingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3D4172047DDD700785567 /* SJTNetworkingConfig.m */; };
 		37C3D41E2047E0B200785567 /* SJTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3D41D2047E0B200785567 /* SJTRequest.m */; };
-		37F667F52072182F00E3A7E4 /* SJTBatchDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F667F42072182F00E3A7E4 /* SJTBatchDownloadRequest.m */; };
-		37F667F82072185600E3A7E4 /* SJTBatchDownloadRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F667F72072185500E3A7E4 /* SJTBatchDownloadRequestEngine.m */; };
 		37F667FB2072482100E3A7E4 /* SJTCacheMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F667FA2072482100E3A7E4 /* SJTCacheMetaData.m */; };
 		37F667FF2072495400E3A7E4 /* SJTNetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F667FE2072495400E3A7E4 /* SJTNetCache.m */; };
 /* End PBXBuildFile section */
@@ -61,14 +53,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		37388F5D206A1C5A00B0C3F4 /* SJTBatchUploadRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTBatchUploadRequest.h; sourceTree = "<group>"; };
-		37388F5E206A1C5A00B0C3F4 /* SJTBatchUploadRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTBatchUploadRequest.m; sourceTree = "<group>"; };
-		37388F60206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTBatchUploadRequestEngine.h; sourceTree = "<group>"; };
-		37388F61206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTBatchUploadRequestEngine.m; sourceTree = "<group>"; };
+		3731718D20F846EC009CB321 /* btg_icon_priority_0_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btg_icon_priority_0_selected@2x.png"; sourceTree = "<group>"; };
 		37388F64206B31E200B0C3F4 /* SJTDownLoadRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTDownLoadRequest.h; sourceTree = "<group>"; };
 		37388F65206B31E200B0C3F4 /* SJTDownLoadRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTDownLoadRequest.m; sourceTree = "<group>"; };
-		37388F73206C8B5400B0C3F4 /* SJTDownLoadRequestEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTDownLoadRequestEngine.h; sourceTree = "<group>"; };
-		37388F74206C8B5400B0C3F4 /* SJTDownLoadRequestEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTDownLoadRequestEngine.m; sourceTree = "<group>"; };
 		377EA4B0204E78D300AA7D8B /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		377EA4B1204E78D300AA7D8B /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		377EA4B2204E78D300AA7D8B /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -82,8 +69,6 @@
 		377EA4BA204E78D300AA7D8B /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		377EA4BB204E78D300AA7D8B /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		377EA4BC204E78D300AA7D8B /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		377EA4C32057741900AA7D8B /* SJTRequestEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJTRequestEngine.h; sourceTree = "<group>"; };
-		377EA4C42057741900AA7D8B /* SJTRequestEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJTRequestEngine.m; sourceTree = "<group>"; };
 		377EA4C62057750C00AA7D8B /* SJTNetAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJTNetAdapter.h; sourceTree = "<group>"; };
 		377EA4C72057750C00AA7D8B /* SJTNetAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJTNetAdapter.m; sourceTree = "<group>"; };
 		377EA4C920577D2D00AA7D8B /* SJTBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJTBaseRequest.h; sourceTree = "<group>"; };
@@ -97,12 +82,6 @@
 		37BB528220639CD0002FD64A /* SJTNetworkCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTNetworkCenter.h; sourceTree = "<group>"; };
 		37BB528320639CD0002FD64A /* SJTNetworkCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTNetworkCenter.m; sourceTree = "<group>"; };
 		37BB528520639F3B002FD64A /* SJTNetCommomHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTNetCommomHeader.h; sourceTree = "<group>"; };
-		37BB52862063D1C7002FD64A /* SJTBatchRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTBatchRequest.h; sourceTree = "<group>"; };
-		37BB52872063D1C7002FD64A /* SJTBatchRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTBatchRequest.m; sourceTree = "<group>"; };
-		37BB52892063D1EC002FD64A /* SJTBatchRequestEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTBatchRequestEngine.h; sourceTree = "<group>"; };
-		37BB528A2063D1EC002FD64A /* SJTBatchRequestEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTBatchRequestEngine.m; sourceTree = "<group>"; };
-		37BB528F2068A033002FD64A /* SJTUploadRequestEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTUploadRequestEngine.h; sourceTree = "<group>"; };
-		37BB52902068A033002FD64A /* SJTUploadRequestEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTUploadRequestEngine.m; sourceTree = "<group>"; };
 		37C3D3E02047DD8500785567 /* SJTNetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SJTNetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C3D3E42047DD8500785567 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		37C3D3E62047DD8500785567 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -123,10 +102,6 @@
 		37C3D4172047DDD700785567 /* SJTNetworkingConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJTNetworkingConfig.m; sourceTree = "<group>"; };
 		37C3D41C2047E0B200785567 /* SJTRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJTRequest.h; sourceTree = "<group>"; };
 		37C3D41D2047E0B200785567 /* SJTRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJTRequest.m; sourceTree = "<group>"; };
-		37F667F32072182F00E3A7E4 /* SJTBatchDownloadRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTBatchDownloadRequest.h; sourceTree = "<group>"; };
-		37F667F42072182F00E3A7E4 /* SJTBatchDownloadRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTBatchDownloadRequest.m; sourceTree = "<group>"; };
-		37F667F62072185500E3A7E4 /* SJTBatchDownloadRequestEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTBatchDownloadRequestEngine.h; sourceTree = "<group>"; };
-		37F667F72072185500E3A7E4 /* SJTBatchDownloadRequestEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTBatchDownloadRequestEngine.m; sourceTree = "<group>"; };
 		37F667F92072482100E3A7E4 /* SJTCacheMetaData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTCacheMetaData.h; sourceTree = "<group>"; };
 		37F667FA2072482100E3A7E4 /* SJTCacheMetaData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTCacheMetaData.m; sourceTree = "<group>"; };
 		37F667FD2072495400E3A7E4 /* SJTNetCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTNetCache.h; sourceTree = "<group>"; };
@@ -163,12 +138,6 @@
 			children = (
 				37388F64206B31E200B0C3F4 /* SJTDownLoadRequest.h */,
 				37388F65206B31E200B0C3F4 /* SJTDownLoadRequest.m */,
-				37388F73206C8B5400B0C3F4 /* SJTDownLoadRequestEngine.h */,
-				37388F74206C8B5400B0C3F4 /* SJTDownLoadRequestEngine.m */,
-				37F667F32072182F00E3A7E4 /* SJTBatchDownloadRequest.h */,
-				37F667F42072182F00E3A7E4 /* SJTBatchDownloadRequest.m */,
-				37F667F62072185500E3A7E4 /* SJTBatchDownloadRequestEngine.h */,
-				37F667F72072185500E3A7E4 /* SJTBatchDownloadRequestEngine.m */,
 			);
 			path = SJTDownLoadRequest;
 			sourceTree = "<group>";
@@ -216,12 +185,6 @@
 			children = (
 				37C3D41D2047E0B200785567 /* SJTRequest.m */,
 				37C3D41C2047E0B200785567 /* SJTRequest.h */,
-				377EA4C42057741900AA7D8B /* SJTRequestEngine.m */,
-				377EA4C32057741900AA7D8B /* SJTRequestEngine.h */,
-				37BB52862063D1C7002FD64A /* SJTBatchRequest.h */,
-				37BB52872063D1C7002FD64A /* SJTBatchRequest.m */,
-				37BB52892063D1EC002FD64A /* SJTBatchRequestEngine.h */,
-				37BB528A2063D1EC002FD64A /* SJTBatchRequestEngine.m */,
 			);
 			path = SJTRequest;
 			sourceTree = "<group>";
@@ -231,12 +194,6 @@
 			children = (
 				377EA4CC2057BFF300AA7D8B /* SJTUploadRequest.h */,
 				377EA4CD2057BFF300AA7D8B /* SJTUploadRequest.m */,
-				37BB528F2068A033002FD64A /* SJTUploadRequestEngine.h */,
-				37BB52902068A033002FD64A /* SJTUploadRequestEngine.m */,
-				37388F5D206A1C5A00B0C3F4 /* SJTBatchUploadRequest.h */,
-				37388F5E206A1C5A00B0C3F4 /* SJTBatchUploadRequest.m */,
-				37388F60206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.h */,
-				37388F61206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.m */,
 			);
 			path = SJTUploadRequest;
 			sourceTree = "<group>";
@@ -273,6 +230,7 @@
 				37BB527F20639C03002FD64A /* SJTRequest */,
 				37BB527E20639B49002FD64A /* SJTNetBaseCommon */,
 				37C3D3E62047DD8500785567 /* AppDelegate.h */,
+				3731718D20F846EC009CB321 /* btg_icon_priority_0_selected@2x.png */,
 				37C3D3E72047DD8500785567 /* AppDelegate.m */,
 				37C3D3E92047DD8500785567 /* ViewController.h */,
 				37C3D3EA2047DD8500785567 /* ViewController.m */,
@@ -430,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37C3D3F32047DD8500785567 /* LaunchScreen.storyboard in Resources */,
+				3731718E20F846EC009CB321 /* btg_icon_priority_0_selected@2x.png in Resources */,
 				37C3D3F02047DD8500785567 /* Assets.xcassets in Resources */,
 				37C3D3EE2047DD8500785567 /* Main.storyboard in Resources */,
 			);
@@ -458,31 +417,22 @@
 			files = (
 				377EA4C82057750C00AA7D8B /* SJTNetAdapter.m in Sources */,
 				377EA4CE2057BFF300AA7D8B /* SJTUploadRequest.m in Sources */,
-				37BB528B2063D1EC002FD64A /* SJTBatchRequestEngine.m in Sources */,
 				377EA4BF204E78D300AA7D8B /* AFSecurityPolicy.m in Sources */,
 				37C3D3EB2047DD8500785567 /* ViewController.m in Sources */,
-				37388F75206C8B5500B0C3F4 /* SJTDownLoadRequestEngine.m in Sources */,
 				37A4752620A061BA00CF1091 /* SJTNetworkingTools.m in Sources */,
 				37C3D3E82047DD8500785567 /* AppDelegate.m in Sources */,
 				377EA4C1204E78D300AA7D8B /* AFURLResponseSerialization.m in Sources */,
 				37C3D3E52047DD8500785567 /* main.m in Sources */,
 				37C3D4182047DDD700785567 /* SJTNetworkingConfig.m in Sources */,
-				37388F5F206A1C5A00B0C3F4 /* SJTBatchUploadRequest.m in Sources */,
-				37BB52882063D1C7002FD64A /* SJTBatchRequest.m in Sources */,
-				37F667F82072185600E3A7E4 /* SJTBatchDownloadRequestEngine.m in Sources */,
 				377EA4BD204E78D300AA7D8B /* AFHTTPSessionManager.m in Sources */,
-				377EA4C52057741900AA7D8B /* SJTRequestEngine.m in Sources */,
 				377EA4CB20577D2D00AA7D8B /* SJTBaseRequest.m in Sources */,
 				37BB528420639CD0002FD64A /* SJTNetworkCenter.m in Sources */,
 				37F667FB2072482100E3A7E4 /* SJTCacheMetaData.m in Sources */,
 				377EA4C0204E78D300AA7D8B /* AFURLRequestSerialization.m in Sources */,
 				377EA4C2204E78D300AA7D8B /* AFURLSessionManager.m in Sources */,
-				37388F62206A2CCA00B0C3F4 /* SJTBatchUploadRequestEngine.m in Sources */,
-				37BB52912068A033002FD64A /* SJTUploadRequestEngine.m in Sources */,
 				37388F66206B31E200B0C3F4 /* SJTDownLoadRequest.m in Sources */,
 				377EA4D12057F35900AA7D8B /* SJTRequstPrivate.m in Sources */,
 				37F667FF2072495400E3A7E4 /* SJTNetCache.m in Sources */,
-				37F667F52072182F00E3A7E4 /* SJTBatchDownloadRequest.m in Sources */,
 				377EA4BE204E78D300AA7D8B /* AFNetworkReachabilityManager.m in Sources */,
 				37C3D41E2047E0B200785567 /* SJTRequest.m in Sources */,
 			);
